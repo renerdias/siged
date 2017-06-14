@@ -1,0 +1,106 @@
+@import "colors.less"; //TODO: Definir cores css para PANEL Default
+
+.panel {
+    background: @bg__is-white;
+    max-width: 1520px;
+    border-radius: 4px 4px 0 0;
+    margin: 8px;
+    padding-bottom: 1px;
+    overflow: hidden;
+}
+
+.panel-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; //      color: #373a3c;
+}
+
+.panel-header {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    -webkit-app-region: drag;
+    line-height: 40px;
+    background: @bg__is-blue;
+    color: @text__is-white;
+    padding: 0 3px;
+}
+
+.panel-header .title {
+    font-weight: 700;
+    justify-content: center;
+    display: flex;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.panel-header .titlebutton {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: center;
+    outline: none;
+    background: none;
+    padding: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    box-shadow: none;
+    -webkit-app-region: no-drag;
+    margin: 0 4px;
+}
+
+.panel-header .title,
+.panel-header .titlebutton {
+    color: #fff;
+}
+
+.panel-header .titlebutton:hover {
+    color: @text__is-blue;
+    //border-color: #fff;
+    background: @bg__is-white;
+}
+
+.mixin-panel-color(@bg_color, @text_color) {
+    .panel-header {
+        background: @bg_color;
+    }
+
+    .panel-header .titlebutton:hover {
+        color: @text_color;
+    }
+}
+
+.panel {
+    &.is-orange {
+        .mixin-panel-color(@bg__is-orange, @text__is-orange);
+    }
+
+    &.is-blue {
+        .mixin-panel-color(@bg__is-blue, @text__is-blue);
+    }
+
+    &.is-red {
+        .mixin-panel-color(@bg__is-red, @text__is-red);
+    }
+
+    &.is-purple {
+        .mixin-panel-color(@bg__is-purple, @text__is-purple);
+    }
+
+    &.is-green {
+        .mixin-panel-color(@bg__is-green, @text__is-green);
+    }
+
+    &.is-dark {
+        .mixin-panel-color(@bg__is-dark, @text__is-dark);
+    }
+
+    &.is-light {
+        .mixin-panel-color(@bg__is-light, @text__is-light);
+    }
+}

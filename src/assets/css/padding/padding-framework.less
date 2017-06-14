@@ -1,0 +1,38 @@
+// Framework padding generation
+//== Gera padding geral
+.calc-padding-column(@padding-min, @padding-max, @class) when (@padding-max > 0) {
+    @p: (@padding-max - @padding-min);
+    .p@{class}-@{p} {
+        padding: ~"@{p}px";
+    }
+}
+//== Gera padding horizontal
+.calc-hpadding(@padding-min, @padding-max, @class) when (@padding-max > 0) {
+    @p: (@padding-max - @padding-min);
+    .ph@{class}-@{p} {
+        padding-left:  ~"@{p}px";
+        padding-right:  ~"@{p}px";
+    }
+}
+//== Gera padding vertical
+.calc-vpadding(@padding-min, @padding-max, @class) when (@padding-max > 0) {
+    @p: (@padding-max - @padding-min);
+    .pv@{class}-@{p} {
+        padding-top:  ~"@{p}px";
+        padding-bottom: ~"@{p}px";
+    }
+}
+
+// Basic looping in LESS
+.loop-padding-columns(@padding-min, @padding-max, @class) when (@padding-max >= 0) {
+    .calc-padding-column(@padding-min, @padding-max, @class);
+    .calc-hpadding(@padding-min, @padding-max, @class);
+    .calc-vpadding(@padding-min, @padding-max, @class);
+    // next iteration
+    .loop-padding-columns(@padding-min,(@padding-max - @padding-min), @class);
+}
+
+// Create padding for specific class
+.make-padding(@class) {
+    .loop-padding-columns(@padding-min, @padding-max, @class);
+}

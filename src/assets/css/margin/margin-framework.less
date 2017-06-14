@@ -1,0 +1,46 @@
+// Framework margin generation
+//== Gera margin geral
+
+.calc-margin-column(@margin-min, @class) when (@margin-max > 0),
+@margin-max {
+  @p: (@margin-max - @margin-min);
+
+  .m@{class} -@{p} {
+    margin: ~"@{p}px";
+  }
+}
+//== Gera margin horizontal
+
+.calc-hmargin(@margin-min, @class) when (@margin-max > 0),
+@margin-max {
+  @p: (@margin-max - @margin-min);
+
+  .mh@{class} -@{p} {
+    margin-left: ~"@{p}px";
+    margin-right: ~"@{p}px";
+  }
+}
+//== Gera margin vertical
+
+.calc-vmargin(@margin-min, @class) when (@margin-max > 0),
+@margin-max {
+  @p: (@margin-max - @margin-min);
+
+  .mv@{class} -@{p} {
+    margin-top: ~"@{p}px";
+    margin-bottom: ~"@{p}px";
+  }
+}
+// Basic looping in LESS
+.loop-margin-columns(@margin-min, @class) when (@margin-max > = 0),
+@margin-max {
+  .calc-margin-column(@margin-min, @margin-max, @class);
+  .calc-hmargin(@margin-min, @margin-max, @class);
+  .calc-vmargin(@margin-min, @margin-max, @class);
+  // next iteration
+  .loop-margin-columns(@margin-min,(@margin-max - @margin-min), @class);
+}
+// Create margin for specific class
+.make-margin(@class) {
+  .loop-margin-columns(@margin-min, @margin-max, @class);
+}

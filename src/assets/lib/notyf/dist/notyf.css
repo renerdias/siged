@@ -1,0 +1,189 @@
+@-webkit-keyframes bounceOutUp {
+  20% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0); }
+  40%, 45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0); }
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -2000px, 0);
+    transform: translate3d(0, -2000px, 0); } }
+@keyframes bounceOutUp {
+  20% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0); }
+  40%, 45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0); }
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -2000px, 0);
+    transform: translate3d(0, -2000px, 0); } }
+.bounceOutUp {
+  -webkit-animation-name: bounceOutUp;
+  animation-name: bounceOutUp; }
+
+@-webkit-keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0); }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0); }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0); }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0); }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0); }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0); }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+.bounceInUp {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp; }
+
+@keyframes appear {
+  0% {
+    opacity: 0; }
+  30% {
+    opacity: 0.5; }
+  100% {
+    opacity: 0.6; } }
+@keyframes disappear {
+  0% {
+    opacity: 0.6; }
+  30% {
+    opacity: 0.1; }
+  100% {
+    opacity: 0; } }
+.notyf__icon--alert, .notyf__icon--confirm {
+  height: 21px;
+  width: 21px;
+  background: white;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  position: relative; }
+
+.notyf__icon--alert:after, .notyf__icon--alert:before {
+  content: "";
+  background: #ed3d3d;
+  display: block;
+  position: absolute;
+  width: 3px;
+  border-radius: 3px;
+  left: 9px; }
+.notyf__icon--alert:after {
+  height: 3px;
+  top: 14px; }
+.notyf__icon--alert:before {
+  height: 8px;
+  top: 4px; }
+
+.notyf__icon--confirm:after, .notyf__icon--confirm:before {
+  content: "";
+  background: #3dc763;
+  display: block;
+  position: absolute;
+  width: 3px;
+  border-radius: 3px; }
+.notyf__icon--confirm:after {
+  height: 6px;
+  transform: rotate(-45deg);
+  top: 9px;
+  left: 6px; }
+.notyf__icon--confirm:before {
+  height: 11px;
+  transform: rotate(45deg);
+  top: 5px;
+  left: 10px; }
+
+.notyf__toast {
+  display: block;
+  overflow: hidden;
+  animation: bounceInUp 0.8s forwards;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.45);
+  position: relative;
+  padding-right: 13px;
+  margin-top: 12px; }
+  .notyf__toast.notyf--alert {
+    background: #ed3d3d; }
+  .notyf__toast.notyf--confirm {
+    background: #3dc763; }
+  .notyf__toast.notyf--disappear {
+    animation: bounceOutUp 0.5s 1 forwards;
+    animation-delay: 0.5s; }
+
+.notyf__wrapper {
+  display: table;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 15px;
+  border-radius: 3px; }
+
+.notyf__icon {
+  display: table-cell;
+  width: 20%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.3em;
+  opacity: 1; }
+
+.notyf__message {
+  display: table-cell;
+  width: 80%;
+  vertical-align: middle;
+  position: relative;
+  opacity: 1; }
+
+.notyf {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  width: 20%;
+  color: white;
+  z-index: 99999; }
+
+/* Small screens */
+@media only screen and (max-width: 736px) {
+  .notyf__container {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    right: 0;
+    left: 0; } }
+
+/*# sourceMappingURL=notyf.css.map */

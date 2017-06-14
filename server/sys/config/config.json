@@ -1,0 +1,12 @@
+{
+  "connection": {
+    "siged": {
+      "sgdb": "pgsql",
+      "server": "localhost",
+      "port": "5432",
+      "dbname": "siged",
+      "user": "postgres",
+      "password": "postgres"
+    }
+  }
+}

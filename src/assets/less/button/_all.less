@@ -1,0 +1,211 @@
+// Color
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@color-initial: #fff;
+@color-primary: #9b4dca;
+@color-secondary: #606c76;
+@color-tertiary: #f4f5f6;
+@color-quaternary: #d1d1d1;
+@color-quinary: #e1e1e1;
+
+/*
+// Button
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.button,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	background-color: @color-primary;
+	border: .1rem solid @color-primary;
+	border-radius: .4rem;
+	color: @color-initial;
+	cursor: pointer;
+	display: inline-block;
+	font-size: inherit;
+	font-weight: 500;	
+	letter-spacing: .1rem;
+	
+	padding: .5rem 1.0rem;
+	text-align: center;
+	text-decoration: none;
+	//text-transform: uppercase;
+	white-space: nowrap;
+
+	&:focus,
+	&:hover{
+		background-color: @color-secondary;
+		border-color: @color-secondary;
+		color: @color-initial;
+		outline: 0;
+        }
+	&[disabled]{
+		cursor: default;
+		opacity: .5;
+
+		&:focus,
+		&:hover {
+			background-color: @color-primary;
+			border-color: @color-primary;
+                }
+        }
+	&.button-outline {
+		background-color: transparent;
+		color: @color-primary;
+       
+		&:focus,
+		&:hover {
+			background-color: transparent;
+			border-color: @color-secondary;
+			color: @color-secondary;
+                }
+		&[disabled]{
+
+			&:focus,
+			&:hover {
+				border-color: inherit;
+				color: @color-primary;
+                        }
+                }
+        }
+	&.button-clear {
+		background-color: transparent;
+		border-color: transparent;
+		color: @color-primary;
+
+		&:focus,
+		&:hover {
+			background-color: transparent;
+			border-color: transparent;
+			color: @color-secondary;
+                }
+		&[disabled] {
+
+			&:focus,
+			&:hover {
+                            color: @color-primary;
+                        }
+                }
+        }
+}
+
+/* Extending The Inheritances 
+
+/* Custom color 
+.button-black {
+  background-color: black;
+  border-color: black;
+}
+.button-black.button-clear,
+.button-black.button-outline {
+  background-color: transparent;
+  color: black;
+}
+.button-black.button-clear {
+  border-color: transparent;
+}
+
+/* Custom size 
+.button-small {
+  font-size: .8rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  padding: 0 1.5rem;
+}
+
+.button-large {
+  font-size: 1.4rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding: 0 2rem;
+}
+*/
+
+
+/*------------------------------------------------------------
+  Buttons/Components
+------------------------------------------------------------*/
+
+.btn, button, [type=submit] {
+  overflow: hidden;
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+          user-select: none;
+  -webkit-transition: all 60ms ease-in-out;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  //text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  color: #FFFFFF;
+  background: #333030;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  letter-spacing: 2px;
+}
+.btn:hover, button:hover, [type=submit]:hover {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  opacity: .85;
+}
+.btn:active, button:active, [type=submit]:active {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
+  opacity: .75;
+}
+.btn:focus, button:focus, [type=submit]:focus {
+  outline: none;
+}
+
+.btn:disabled, button:disabled, [type=submit]:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+
+/* Button Outline */
+
+.btn-outline {
+  border: 2px solid #333;
+  color: #333;
+  background: transparent;
+  transition: all 0.5s ease;
+}
+
+.btn-outline:hover,
+.btn-outline:active {
+  color: #333;
+  background: #fff;
+}
+
+.btn-outline-inverted {
+  border: 2px solid #333;
+  color: #333;
+  background: transparent;
+  transition: all 0.5s ease;
+}
+
+.btn-outline-inverted:hover,
+.btn-outline-inverted:active {
+  color: #fff;
+  background: #333;
+}
+
+
+/* Button Clear */
+
+.btn-clear {
+    background: transparent;
+    color: gray;
+}

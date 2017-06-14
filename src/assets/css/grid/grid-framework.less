@@ -1,0 +1,85 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `@grid-columns`.
+/*
+.make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) when (@index = 1) {
+    // initial
+    @item: ~".width__xs-@{index}, .width__sm-@{index}, .width__md-@{index}, .width__lg-@{index}";
+    .col((@index + 1), @item);
+  }
+
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general; "=<" isn't a typo
+    @item: ~".width__xs-@{index}, .width__sm-@{index}, .width__md-@{index}, .width__lg-@{index}";
+    .col((@index + 1), ~ "@{list}, @{item}");
+  }
+  // LESSPHP needs second parameter '.col' to fire
+  .col(1,  '.col'); // kickstart it
+}
+*/
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  @percent: (@index / @grid-columns);
+  @id: round(@percent * 100);
+
+  .width__@{class}-@{id} {
+    -ms-flex-preferred-size: percentage((@index / @grid-columns));
+    flex-basis: percentage((@index / @grid-columns));
+    max-width: percentage((@index / @grid-columns));
+    //width: percentage((@index / @grid-columns));
+  }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = left) and (@index > 0) {
+  @percent: (@index / @grid-columns);
+  @id: round(@percent * 100);
+
+  .width__@{class}-left-@{id} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = left) and (@index = 0) {
+  .width__@{class}-left-0 {
+    left: auto;
+  }
+}
+ 
+.calc-grid-column(@index, @class, @type) when (@type = right) and (@index > 0) {
+  @percent: (@index / @grid-columns);
+  @id: round(@percent * 100);
+
+  .width__@{class}-right-@{id} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = right) and (@index = 0) {
+  .width__@{class}-right-0 {
+    right: auto;
+  }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+  @percent: (@index / @grid-columns);
+  @id: round(@percent * 100);
+
+  .width__@{class}-offset-@{id} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type) when (@index > = 0) {
+  .calc-grid-column(@index, @class, @type);
+  // next iteration
+  .loop-grid-columns((@index - 1), @class, @type);
+}
+// Create grid for specific class
+.make-grid(@class) {
+  .loop-grid-columns(@grid-columns, @class, width);
+  .loop-grid-columns(@grid-columns, @class, right);
+  .loop-grid-columns(@grid-columns, @class, left);
+  .loop-grid-columns(@grid-columns, @class, offset);
+}

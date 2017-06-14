@@ -1,0 +1,14 @@
+@import "_variables.less";
+@import "margin/margin-framework.less"; //== Gera margin telas muito pequenas
+.make-margin(xs); //== Gera margin telas pequenas
+@media (min-width: @screen-sm) {
+  .make-margin(sm);
+}
+//== Gera margin telas médias
+@media (min-width: @screen-md) {
+  .make-margin(md);
+}
+//== Gera margin telas grandes
+@media (min-width: @screen-lg) {
+  .make-margin(lg);
+}

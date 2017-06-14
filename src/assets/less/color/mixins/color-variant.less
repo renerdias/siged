@@ -1,0 +1,31 @@
+.zmd-color-variant(@name, @accent: true) {
+  .@{zmdc-css-prefix}-@{name} {
+    .zmd-text-variant(@name);
+      /*bw*/
+    & when(@accent = true) {
+      .zmd-text-variant-accent(@name);
+    }
+  }
+  .@{zmdc-css-prefix}-@{zmdc-text-hover}-@{name} {
+    .zmd-text-variant(@name);
+    & when(@accent = true) {
+      .zmd-text-variant-accent(@name);
+    }
+  }  
+  .@{zmdc-css-prefix}-@{name} {
+    .zmd-bg-variant(@name);
+    & when(@accent = true) {
+      .zmd-bg-variant-accent(@name);
+    }
+  }
+}
+ 
+.zmd-color-variant-bw(@name) {
+  .@{zmdc-css-prefix}-@{zmdc-text-prefix}-@{name} {
+      /*bw*/
+    .zmd-text-variant-bw(@name);
+  }
+  .@{zmdc-css-prefix}-@{zmdc-text-prefix}-@{name} {
+    .zmd-text-variant-bw(@name);
+  }
+}  

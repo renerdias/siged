@@ -1,0 +1,20 @@
+@import "_variables.less";
+@import "padding/padding-framework.less";
+
+//== Gera padding telas muito pequenas
+.make-padding(xs);
+
+//== Gera padding telas pequenas
+@media (min-width: @screen-sm) {
+  .make-padding(sm);
+}
+
+//== Gera padding telas médias
+@media (min-width: @screen-md) {
+  .make-padding(md);
+}
+
+//== Gera padding telas grandes
+@media (min-width: @screen-lg) {
+  .make-padding(lg);
+}
