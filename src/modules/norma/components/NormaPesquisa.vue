@@ -93,7 +93,7 @@ letter-spacing: 7px;">
       </box>
     </box>
     <box v-if="__permissao.norma.inserir" direction="row" reverse :padding="[5]">
-      <button @click.prevent.stop="$router.push('/norma/novo')" class="button button-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
+      <button @click.prevent.stop="$router.push('/norma/novo')" class="button button__is-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
     </box>
   </box>
 </box>

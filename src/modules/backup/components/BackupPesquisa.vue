@@ -32,7 +32,7 @@
         <input type="text" />
         </box>
         <box v-if="__permissao.backup.inserir" direction="row" center :padding="[0,5]" class="width__xs-15">
-          <button @click.prevent.stop="$router.push('/backup/novo')" class="button button-blue"><i class="fa fa-search" style=""></i>Pesquisar</button>
+          <button @click.prevent.stop="$router.push('/backup/novo')" class="button button__is-blue"><i class="fa fa-search" style=""></i>Pesquisar</button>
         </box>
     </box>
 

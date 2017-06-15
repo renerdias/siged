@@ -6,7 +6,7 @@
       <i class="fa fa-search" style="float:right;margin-left: -30px; z-index:2;"></i>
     </box>
     <box direction="row" :padding="[0,5]" class="width__xs-15 box__is-center">
-      <button @click.prevent.stop="$router.push('/funcionalidade/novo')" class="button button-blue">Novo</button>
+      <button @click.prevent.stop="$router.push('/funcionalidade/novo')" class="button button__is-blue">Novo</button>
     </box>
   </box>
   <box direction="row" :padding="[0]">

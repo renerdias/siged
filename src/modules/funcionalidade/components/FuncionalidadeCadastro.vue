@@ -27,7 +27,7 @@
     <button @click="cancelar" class="button button-flat width__xs-100">Voltar</button>
   </box>
   <box v-else direction="row" reverse :padding="[5,10]">
-    <button @click.prevent.stop="salvar(funcionalidade)" class="button button-blue width__xs-50">Salvar</button> &nbsp;
+    <button @click.prevent.stop="salvar(funcionalidade)" class="button button__is-blue width__xs-50">Salvar</button> &nbsp;
     <button @click="cancelar" class="button button-flat width__xs-50">Cancelar</button>
   </box>
   <!-- End button bar-->

@@ -8,7 +8,7 @@
       </a>
     </box>
     <box v-if="__permissao.usuario.inserir" direction="row" :padding="[0,5]" class="width__xs-15 box__is-center">
-      <router-link to="/usuario/novo" class="button button-blue">Novo</router-link>
+      <router-link to="/usuario/novo" class="button button__is-blue">Novo</router-link>
     </box>
   </box>
   <box direction="row" :padding="[0]">

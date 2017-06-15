@@ -27,7 +27,7 @@ min-height: 500px;padding: 48px 40px 36px;">
           </box>
         </box>
         <box direction="row" reverse>
-          <button class="button button-blue width__xs-100" type="submit">
+          <button class="button button__is-blue width__xs-100" type="submit">
                                 <i class="fa fa-sign-out" style="padding: 0 10px;font-size: 20px;"></i>
                                 Autenticar
                             </button>

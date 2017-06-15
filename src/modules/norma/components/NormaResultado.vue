@@ -69,7 +69,7 @@
         <input type="text" class="small" />
       </box>
       <box v-if="__permissao.norma.inserir" direction="column" reverse :padding="[5]" class="width__xs-15">
-        <button @click.prevent.stop="$router.push('/norma/novo')" class="button button-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
+        <button @click.prevent.stop="$router.push('/norma/novo')" class="button button__is-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
       </box>
     </box>
 

@@ -5,7 +5,7 @@
       Perfil
     </box>
     <box direction="row" center :padding="[0,10]" style="height:50px;width:300px;">
-      <button class="button button-blue width__xs-50">Salvar</button>
+      <button class="button button__is-blue width__xs-50">Salvar</button>
       <button @click.prevent.stop="$router.push('/perfil')" class="button width__xs-50">Cancelar</button>
     </box>
   </box>
