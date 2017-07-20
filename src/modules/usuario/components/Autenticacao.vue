@@ -70,13 +70,13 @@ export default {
   },
   methods: {
     init() {
-      console.log(this._todosTiposNormas());
+      console.log(this._todosTiposDocumentos());
     },
     ...mapActions('usuario', [
       'autenticarUsuario'
     ]),
     ...mapActions({
-      '_todosTiposNormas': 'tipo_norma/_todosTiposNormas'
+      '_todosTiposDocumentos': 'tipo_documento/_todosTiposDocumentos'
     }),
     autenticar() {
       var vm = this;
@@ -87,7 +87,7 @@ export default {
       vm.autenticarUsuario(vm.credencial).then((data) => {
         var usuario = data;
         const promises = [
-          vm._todosTiposNormas(),
+          vm._todosTiposDocumentos(),
           new Promise(resolve => setTimeout(resolve, 0, 2))
         ];
         //vm.init()
@@ -97,7 +97,7 @@ export default {
             //var profileData = results[0];
             //console.log("First handler", profileData);
 
-            //Tipos Normas
+            //Tipos Documentos
             if (results[0] == true) {
               notyf.confirm('Olá ' + usuario.nome + ', seja bem-vindo(a)!');
               setTimeout(function() {

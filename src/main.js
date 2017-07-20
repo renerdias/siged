@@ -69,33 +69,33 @@ const router = new VueRouter({
       beforeEnter: requererAutenticacao
     },
     {
-      path: '/norma',
-      component: require('./modules/norma/components/Norma.vue'),
+      path: '/documento',
+      component: require('./modules/documento/components/Documento.vue'),
       beforeEnter: requererAutenticacao,
       children: [{
           path: '',
-          component: require('./modules/norma/components/NormaPesquisa.vue'),
+          component: require('./modules/documento/components/DocumentoPesquisa.vue'),
           beforeEnter: requererAutenticacao
         },
         {
           path: 'novo',
-          component: require('./modules/norma/components/NormaCadastro.vue'),
+          component: require('./modules/documento/components/DocumentoCadastro.vue'),
           beforeEnter: requererAutenticacao
         },
         {
           path: 'resultado',
-          component: require('./modules/norma/components/NormaResultado.vue'),
+          component: require('./modules/documento/components/DocumentoResultado.vue'),
           beforeEnter: requererAutenticacao
         },
         {
           path: ':id/:acao(editar|visualizar)',
-          component: require('./modules/norma/components/NormaCadastro.vue'),
+          component: require('./modules/documento/components/DocumentoCadastro.vue'),
           beforeEnter: requererAutenticacao
         }
         /*,
                         {
                             path: ':id/visualizar',
-                            component: require('./modules/norma/components/NormaCadastro.vue'),
+                            component: require('./modules/documento/components/DocumentoCadastro.vue'),
                             beforeEnter: requererAutenticacao
                         }
                         */

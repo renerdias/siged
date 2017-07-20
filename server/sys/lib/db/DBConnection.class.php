@@ -38,9 +38,9 @@ final class DBConnection {
      */
     public static function create($name) {
       //TODO: DBConnection carregamento de configuração dever ser revista
-      //$config = Config::load(dirname(__FILE__). '../../config/config.json');
+      //TODO: Passar local do arquivo de configuração sem caminho completo
       $config = Config::load('/opt/ApachePHP/apache/www/r2/siged/server/sys/config/config.json');
-      #Retorna uma array de confirações
+      #Retorna uma array de configurações
       $conf = $config->get('connection.' . $name);
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
       $SGDB = $conf['sgdb'];

@@ -37,7 +37,7 @@ export default {
           name: 'Documento',
           class: '',
           icon: 'fa fa-file-text',
-          link: '#/norma/'
+          link: '#/documento/'
           //title: 'fa fa-user'
           //icon: 'fa fa-user'
           //action: 'fa fa-user'

@@ -3,7 +3,7 @@
 <div id="app" class="box-app box__is-row">
   <app-sidebar></app-sidebar>
   <!-- Page content -->
-  <box expand direction="column">
+  <box expand direction="column" style="overflow-x: hidden;overflow-y: auto; max-height: 100vh;">
     <template v-if="$route.matched.length">
           <router-view></router-view>
       </template>

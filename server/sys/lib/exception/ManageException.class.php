@@ -84,7 +84,17 @@ Class ManageException
 			"CRFILENAME",
 			"CRLINENUM"
 		);
-		$corp = "<b>Informações sobre o erro:</b>" . $this->el;
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		//TODO: Identificar ip, navegador, usario e perfil usado
+		$corp = "<b>Indentificação da origem do acesso:</b>" . $this->el;
+		$corp.= "<ul>" . $this->el;
+		$corp.= $this->t . "<li>IP: CRDT</li>" . $this->el;
+		$corp.= $this->t . "<li>Navegador: CRERRNO CRERRORTYPE</li>" . $this->el;
+		$corp.= $this->t . "<li>Usuário: CRERRMSG</li>" . $this->el;
+		$corp.= $this->t . "<li>Data/Hora do Login: CRFILENAME</li>" . $this->el;
+		$corp.= "</ul>";
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		$corp.= "<b>Informações sobre o erro:</b>" . $this->el;
 		$corp.= "<ul>" . $this->el;
 		$corp.= $this->t . "<li>Data e hora: CRDT</li>" . $this->el;
 		$corp.= $this->t . "<li>Tipo: CRERRNO CRERRORTYPE</li>" . $this->el;
@@ -112,7 +122,7 @@ Class ManageException
 		try {
 			$this->ignoreErrors();
 			$dt = date("d-m-Y H:i:s");
-			$errmsg = $str = mb_convert_encoding($errmsg, "ISO-8859-1", "ASCII,JIS,UTF-8,ISO-8859-1");
+			//$errmsg = $str = mb_convert_encoding($errmsg, "ISO-8859-1", "ASCII,JIS,UTF-8,ISO-8859-1");
 			$this->setCorpMsg(array(
 				$dt,
 				$errno,
@@ -190,7 +200,9 @@ Class ManageException
 	 */
 	private function saveLog($errno)
 	{
-		if (!file_exists($this->getFileLog())) $this->createFileLog();
+		if (!file_exists($this->getFileLog())){
+			$this->createFileLog();
+		}
 		$xml = simplexml_load_file($this->getFileLog());
 		$exist = false;
 		foreach($xml->error as $errorLine) if ($errorLine["code"] == $errno) {
@@ -221,29 +233,29 @@ Class ManageException
     $mail = new PHPMailer;
     #Diz ao PHPMailer para usar SMTP
     $mail->isSMTP();
-		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Informa o hostname do servidor de email
     $mail->Host = "smtp-mail.outlook.com";
     #Informa a porta do SMTP - Normalmente 25, 465 or 587
     $mail->Port = 587;
     #Informa que será usada autenticação
     $mail->SMTPAuth = true;
-		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Informa o usuário SMTP para autenticação
     $mail->Username = "renerdias@live.com";
     #Informa a senha SMTP para autenticação
     $mail->Password = "Desenvolvimento";
-		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Defina de quem a mensagem deve ser enviada
     $mail->setFrom('renerdias@live.com', 'SIGED');
     #Defina pra quem a mensagem está sendo enviada
     $mail->addAddress('renerdias@live.com', 'Rener Dias');
-    #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Defina o título da mensagem
-    $mail->Subject = 'SIGED - Alerta';
+    $mail->Subject = 'SIGED - Notificação';
     #Defina a mensagem a ser enviada
-    $mail->msgHTML($this->corpMsg);
-		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    $mail->msgHTML(utf8_decode($this->corpMsg));
+		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Envia a mensagem e checa erros
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;

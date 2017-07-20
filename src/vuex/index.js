@@ -10,9 +10,9 @@ Vue.use(Vuex);
  */
 import backup from '../modules/backup/BackupStore';
 import funcionalidade from '../modules/funcionalidade/FuncionalidadeStore';
-import norma from '../modules/norma/NormaStore';
+import documento from '../modules/documento/DocumentoStore';
 import perfil from '../modules/perfil/PerfilStore';
-import tipo_norma from '../modules/tipo_norma/TipoNormaStore';
+import tipo_documento from '../modules/tipo_documento/TipoDocumentoStore';
 import usuario from '../modules/usuario/UsuarioStore';
 
 
@@ -20,9 +20,9 @@ export default new Vuex.Store({
   modules: {
     backup,
     funcionalidade,
-    norma,
+    documento,
     perfil,
-    tipo_norma,
+    tipo_documento,
     usuario
   }
 })

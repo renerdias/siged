@@ -4,6 +4,7 @@ namespace root\server\sys\srv\usuario\controller;
 
 use root\server\sys\lib\db\DBTransaction;
 use root\server\sys\srv\usuario\model\Usuario;
+use root\server\sys\lib\session\Session;
 
 /**
  * Trecho de código responsável por encontrar os dados na tabela tb_usuario e que
@@ -17,8 +18,6 @@ use root\server\sys\srv\usuario\model\Usuario;
  */
 trait pesquisar {
 
-
-#$usuario->login($user_name, $senha);
 /**
  *
  * @param type $nome
@@ -30,8 +29,10 @@ public static function autenticar($nome, $senha) {
     $model = new Usuario();
     $resultado = $model->login($nome, $senha);
     if (count($resultado) > 0) {
+
+
         #Inicia sessao
-        session_start();
+        //session_start();
         #Gera token
         //var_dump($model->obterPermissoesPorPerfil($resultado[0]->id_perfil));
         $permissoesPerfil = $model->obterPermissoesPorPerfil($resultado[0]->id_perfil);
@@ -40,8 +41,7 @@ public static function autenticar($nome, $senha) {
         foreach ($permissoesPerfil as $key) {
           $permissoesPerfilAgrupadas[$key->no_funcionalidade][$key->no_acao] = $key->st_permitido;
         }
-        #Cria array com dados do usuario como id perfil
-        $_SESSION["credencial"] = array(
+       $credencial= array(
             'id' => $resultado[0]->id_usuario,
             'login' => $resultado[0]->lg_usuario,
             'nome' => current( str_word_count( $resultado[0]->no_usuario , 2 ) ),
@@ -53,7 +53,11 @@ public static function autenticar($nome, $senha) {
             ),
             'permissao' => $permissoesPerfilAgrupadas
         );
-        session_write_close();
+        $session = new Session();
+      $session->init()
+              ->set('credencial', $credencial)
+              ->set('token', 'seg' . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])
+              ->write();
         DBTransaction::commit();
         return true;
     } else {

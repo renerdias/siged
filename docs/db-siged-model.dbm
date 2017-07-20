@@ -3,8 +3,8 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,150" last-zoom="0.8"
-	 default-schema="public" default-owner="postgres">
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+	 default-owner="postgres">
 <database name="siged" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
 	<comment><![CDATA[Sistema Integrado de Gestao Eletronica de Documentos]]></comment>
 </database>
@@ -59,10 +59,10 @@ Comentário.]]></comment>
 	<comment><![CDATA[Schema de tabelas sistemas com dados padronizados, nao podendo ser alterados pelo usuario comun.]]></comment>
 </schema>
 
-<table name="ts_tipo_norma">
+<table name="ts_tipo_documento">
 	<schema name="sistema"/>
 	<role name="postgres"/>
-	<comment><![CDATA[Tabela de tipos de normas aceitas pelo sistema]]></comment>
+	<comment><![CDATA[Tabela de tipos de documentos aceitas pelo sistema]]></comment>
 	<tag name="purple_tables"/>
 	<position x="180" y="600"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
@@ -70,24 +70,24 @@ Comentário.]]></comment>
 		<comment><![CDATA[Status do registro:
 A = Ativo / I = Inativo]]></comment>
 	</column>
-	<column name="id_tipo_norma" not-null="true">
+	<column name="id_tipo_documento" not-null="true">
 		<type name="smallint" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primária.]]></comment>
 	</column>
-	<column name="no_tipo_norma" not-null="true">
+	<column name="no_tipo_documento" not-null="true">
 		<type name="character varying" length="100"/>
-		<comment><![CDATA[Nome do tipo de norma.]]></comment>
+		<comment><![CDATA[Nome do tipo de documento.]]></comment>
 	</column>
-	<column name="ds_tipo_norma" not-null="true">
+	<column name="ds_tipo_documento" not-null="true">
 		<type name="character varying" length="0"/>
-		<comment><![CDATA[Descriçao do tipo de norma.]]></comment>
+		<comment><![CDATA[Descriçao do tipo de documento.]]></comment>
 	</column>
-	<constraint name="pk_tipo_norma" type="pk-constr" table="sistema.ts_tipo_norma">
-		<columns names="id_tipo_norma" ref-type="src-columns"/>
-		<comment><![CDATA[Chave primaria da tabela ts_tipo_norma.]]></comment>
+	<constraint name="pk_tipo_documento" type="pk-constr" table="sistema.ts_tipo_documento">
+		<columns names="id_tipo_documento" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da tabela ts_tipo_documento.]]></comment>
 	</constraint>
 	<initial-data>
-<![CDATA[st_registro•id_tipo_norma•no_tipo_norma•ds_tipo_norma⸣
+<![CDATA[st_registro•id_tipo_documento•no_tipo_documento•ds_tipo_documento⸣
 A•1•Projeto de Emenda à Lei Orgânica do Município•Propostas de emendas à Lei Orgânica, a “Constituição” do Município⸣
 A•2•Projetos de Lei Complementar•Propostas de mudanças das leis de código de obras, licenciamento e fiscalização⸣
 A•3•Projetos de Lei Ordinária•Propostas de leis válidas em todo o município⸣
@@ -96,8 +96,8 @@ A•5•Projeto de Decreto Legislativo•Propostas para revogar decretos do Pref
 A•6•Emenda à Lei Orgânica do Município•São as alterações efetuadas na Lei Orgânica com o objetivo de adaptá-la às transformações que acontecem na organização municipal. Sempre que a Lei Orgânica precisar ser alterada é através da elaboração de uma Emenda⸣
 A•7•Lei Complementar•É por meio dela que o município complementa uma lei que já existe. São leis que têm por objetivo detalhar matérias já previstas na Lei Orgânica. Precisa para sua aprovação da maioria absoluta de votos, ou seja, metade mais um de todos os vereadores que compõem a Casa⸣
 A•8•Lei Ordinária•É toda lei que, embora não prevista expressamente na Lei Orgânica ou na Constituição Federal, pode tratar de matéria de interesse do município, sem, no entanto, contrariar a Lei Orgânica, nem a Constituição. Precisa do quórum de maioria simples para aprovação, ou seja, metade mais um dos vereadores presentes, desde que esteja presente a metade mais um dos componentes da Casa⸣
-A•9•Resolução• São atos normativos da Câmara Municipal em matérias da sua exclusiva competência e de efeito interno. Também não é necessária a sanção do prefeito. Altera o funcionamento da Câmara⸣
-A•10•Decreto Legislativo•Trata-se de ato privativo do Presidente da Câmara que tem por objetivo colocar em prática situações previstas em lei. Sendo hierarquicamente inferiores, os decretos não podem ultrapassar os limites fixados pela lei, como também não podem criar direitos e obrigações. É a norma editada pela Câmara sobre matérias de sua exclusiva competência, cujos efeitos são externos. A iniciativa, em certos casos, pode ser do prefeito, embora não seja necessária a sanção deste para promulgar um Decreto Legislativo. Revoga decretos do Prefeito que passem por cima das suas limitações⸣
+A•9•Resolução• São atos documentotivos da Câmara Municipal em matérias da sua exclusiva competência e de efeito interno. Também não é necessária a sanção do prefeito. Altera o funcionamento da Câmara⸣
+A•10•Decreto Legislativo•Trata-se de ato privativo do Presidente da Câmara que tem por objetivo colocar em prática situações previstas em lei. Sendo hierarquicamente inferiores, os decretos não podem ultrapassar os limites fixados pela lei, como também não podem criar direitos e obrigações. É a documento editada pela Câmara sobre matérias de sua exclusiva competência, cujos efeitos são externos. A iniciativa, em certos casos, pode ser do prefeito, embora não seja necessária a sanção deste para promulgar um Decreto Legislativo. Revoga decretos do Prefeito que passem por cima das suas limitações⸣
 A•11•Lei Orgânica•De acordo com o artigo 29 da Constituição Federal, o Município passou a ser regido pela sua própria Lei Orgânica, atendendo os princípios constitucionais e Constituição do seu respectivo Estado e o prescrito nos incisos do artigo supracitado, ou seja, Lei Orgânica do Município é uma espécie de Constituição Municipal⸣
 A•12•Lei Delegada•É lei baixada pelo prefeito. Para que isso aconteça, é necessário que a Câmara conceda autorização ao prefeito, por meio de uma Resolução; isto quando a lei for de interesse do município]]>
 	</initial-data>
@@ -5823,14 +5823,6 @@ A = Ativo
 	</constraint>
 </table>
 
-<table name="ts_tipo_documento">
-	<schema name="sistema"/>
-	<role name="postgres"/>
-	<comment><![CDATA[Tabela de tipos de documentos.]]></comment>
-	<tag name="purple_tables"/>
-	<position x="460" y="1120"/>
-</table>
-
 <table name="tb_usuario">
 	<schema name="public"/>
 	<role name="postgres"/>
@@ -5975,9 +5967,9 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 8•A•Cadastro de Perfil•perfil•Editar•editar⸣
 9•A•Cadastro de Perfil•perfil•Inserir Administrador•inserir_admin⸣
 10•A•Cadastro de Perfil•perfil•Editar Administrador•editar_admin⸣
-11•A•Cadastro de Norma•norma•Visualizar•visualizar⸣
-12•A•Cadastro de Norma•norma•Inserir•inserir⸣
-13•A•Cadastro de Norma•norma•Editar•editar]]>
+11•A•Cadastro de Documento•documento•Visualizar•visualizar⸣
+12•A•Cadastro de Documento•documento•Inserir•inserir⸣
+13•A•Cadastro de Documento•documento•Editar•editar]]>
 	</initial-data>
 </table>
 
@@ -5993,15 +5985,11 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 
 	<customidxs object-type="column">
 		<object name="id_funcionalidade" index="0"/>
-		<object name="id_perfil" index="1"/>
-		<object name="id_usuario" index="3"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="fk_tb_perfil" index="1"/>
-		<object name="fk_tb_usuario" index="3"/>
 		<object name="fk_ts_funcionalidade" index="0"/>
-		<object name="pk_rl_funcionalidade_perfil" index="2"/>
+		<object name="pk_rl_funcionalidade_perfil" index="1"/>
 	</customidxs>
 	<initial-data>
 <![CDATA[id_funcionalidade•id_perfil•st_permitido•id_usuario⸣
@@ -6171,10 +6159,10 @@ A = Ativo
 	</constraint>
 </table>
 
-<table name="tb_norma">
+<table name="tb_documento">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<comment><![CDATA[Tabela de normas.]]></comment>
+	<comment><![CDATA[Tabela de documentos.]]></comment>
 	<tag name="red_tables"/>
 	<position x="1120" y="200"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
@@ -6190,14 +6178,14 @@ A = Ativo
 	<column name="id_usuario" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="id_norma" not-null="true">
+	<column name="id_documento" not-null="true">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
 	</column>
-	<column name="id_tipo_norma" not-null="true">
+	<column name="id_tipo_documento" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
-	<column name="nu_norma" not-null="true">
+	<column name="nu_documento" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
 	<column name="ds_ementa" not-null="true">
@@ -6206,17 +6194,17 @@ A = Ativo
 	<column name="ds_ementa_fn" not-null="true">
 		<type name="text" length="0"/>
 	</column>
-	<column name="ds_norma" not-null="true">
+	<column name="ds_documento" not-null="true">
 		<type name="text" length="0"/>
 	</column>
-	<column name="dt_norma">
+	<column name="dt_documento">
 		<type name="date" length="0"/>
 	</column>
 	<column name="dt_aprovacao">
 		<type name="date" length="0"/>
 	</column>
-	<constraint name="pk_norma" type="pk-constr" table="public.tb_norma">
-		<columns names="id_norma" ref-type="src-columns"/>
+	<constraint name="pk_documento" type="pk-constr" table="public.tb_documento">
+		<columns names="id_documento" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -6226,14 +6214,14 @@ A = Ativo
 	<columns names="id_perfil" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="fk_tb_norma_ts_tipo_norma" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="sistema.ts_tipo_norma" table="public.tb_norma">
-	<columns names="id_tipo_norma" ref-type="src-columns"/>
-	<columns names="id_tipo_norma" ref-type="dst-columns"/>
+<constraint name="fk_tb_documento_ts_tipo_documento" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="sistema.ts_tipo_documento" table="public.tb_documento">
+	<columns names="id_tipo_documento" ref-type="src-columns"/>
+	<columns names="id_tipo_documento" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="fk_tb_norma_tb_usuario" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_usuario" table="public.tb_norma">
+<constraint name="fk_tb_documento_tb_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_usuario" table="public.tb_documento">
 	<columns names="id_usuario" ref-type="src-columns"/>
 	<columns names="id_usuario" ref-type="dst-columns"/>
 </constraint>
@@ -6243,13 +6231,13 @@ A = Ativo
 	 dst-table="public.tb_perfil"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_tb_norma_ts_tipo_norma" type="relfk"
-	 src-table="public.tb_norma"
-	 dst-table="sistema.ts_tipo_norma"
+<relationship name="rel_tb_documento_ts_tipo_documento" type="relfk"
+	 src-table="public.tb_documento"
+	 dst-table="sistema.ts_tipo_documento"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_tb_norma_tb_usuario" type="relfk"
-	 src-table="public.tb_norma"
+<relationship name="rel_tb_documento_tb_usuario" type="relfk"
+	 src-table="public.tb_documento"
 	 dst-table="public.tb_usuario"
 	 src-required="false" dst-required="false"/>
 
