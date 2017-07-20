@@ -1,63 +1,39 @@
 <template>
 <box direction="column" expand>
-
-  <box direction="column" style="border-bottom: 1px solid #dedede">
-    <box direction="row" :padding="[0]">
-      <box direction="column" :padding="[0]" class="width__xs-30">
-        <label>Tipo de Perfil</label>
-        <input type="text" />
-      </box>
-      <box direction="column" :padding="[0]" class="width__xs-20">
-        <label>Número</label>
-        <input type="text" />
-      </box>
-      <box direction="column" :padding="[0]" class="width__xs-20">
-        <label>Ano</label>
-        <input type="text" />
-      </box>
-      <box direction="column" :padding="[0]" class="width__xs-30">
-        <label>Período</label>
-        <box direction="row">
-        <input class="width__is-50" type="text"/> <span>até</span><input class="width__is-50" type="text" />
-        </box>
-      </box>
+  <box direction="row" :padding="[20]" center style="background:#f1f1f1;border-bottom: 1px solid #dedede">
+    <box direction="row" :padding="[0,5]" expand :margin="[10]" class=" box__is-center" style='justify-content: flex-start !important;'>
+      <input v-model="termo" @keyup.enter="_pesquisarUsuarioPorNome(termo)" class="width__xs-100" type="text" placeholder="Digite o nome do usuário ou perfil..." />
+      <a style="float: right; margin-left: -30px; z-index: 2;" @click.prevent="_pesquisarUsuarioPorNome(termo)">
+        <i class="fa fa-search"></i>
+      </a>
     </box>
-    <box direction="row" :padding="[0,5]">
-      <box direction="column" :padding="[0,5]" class="width__xs-25">
-        <label>Ementa</label>
-        <input type="text" />
-      </box>
-      <box direction="column" :padding="[0,5]" class="width__xs-25">
-        <label>Assunto</label>
-        <input type="text" />
-        </box>
-        <box v-if="__permissao.perfil.inserir" direction="row" center :padding="[0,5]" class="width__xs-15">
-          <button @click.prevent.stop="$router.push('/perfil/novo')" class="button button__is-blue"><i class="fa fa-search" style=""></i>Pesquisar</button>
-        </box>
+    <box v-if="__permissao.usuario.inserir" direction="row" :padding="[0,5]" class="width__xs-15 box__is-center">
+      <router-link to="/usuario/novo" class="button button__is-blue box box__is-expand">Novo</router-link>
     </box>
-
   </box>
-  <box direction="row" expand :padding="[0]" style="background:#f1f1f1;">
+  <box direction="row" :padding="[0]">
     <table class="w3-table w3-bordered w3-striped w3-hoverable">
       <thead>
         <tr class="w3-red">
           <th style="width: 50px;"></th>
-          <th>Nome</th>
-          <th>Município</th>
-          <th style="width:80px;" class="text__is-center">Ação</th>
+          <th>CPF</th>
+          <th>Usuário</th>
+          <th>Perfil</th>
+          <th style="width:80px; text-align:center">Ação</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="_perfil in __listaPerfis">
+        <tr v-for="_usuario in __listaUsuarios">
           <td class="icons">
-            <i class="fa fa-check-circle" :class="[_perfil.st_registro == 'A' ? 'text__is-blue' : '']">
+            <i class="fa fa-check-circle" :class="[_usuario.st_registro == 'A' ? 'text__is-blue' : '']">
                             </i>
           </td>
-          <td>{{_perfil.no_perfil}}</td>
-          <td>{{_perfil.no_municipio}} - {{_perfil.sg_uf}}</td>
+          <td>{{_usuario.nu_cpf}}</td>
+          <td>{{_usuario.no_usuario}}</td>
+          <td>{{_usuario.no_perfil}}</td>
           <td class="buttons">
-            <a v-if="__permissao.perfil.visualizar" @click.prevent="$router.push('/perfil/'+ _perfil.id_perfil +'/visualizar')"><i class="fa fa-eye"></i></a>
-            <a v-if="__permissao.perfil.editar" @click.prevent="$router.push('/perfil/'+ _perfil.id_perfil +'/editar')"><i class="fa fa-edit"></i></a>
+            <a v-if="__permissao.usuario.visualizar" @click.prevent="$router.push('/usuario/'+ _usuario.id_usuario +'/visualizar')"><i class="fa fa-eye"></i></a>
+            <a v-if="__permissao.usuario.editar" @click.prevent="$router.push('/usuario/'+ _usuario.id_usuario +'/editar')"><i class="fa fa-edit"></i></a>
           </td>
         </tr>
       </tbody>
@@ -67,7 +43,7 @@
 </template>
 <script>
 import Box from "../../../components/r2-box.vue";
-import Window from "../../../components/r2-window.vue";
+import Infobar from "../../../components/r2-infobar.vue";
 import {
   mapActions,
   mapGetters
@@ -75,35 +51,29 @@ import {
 export default {
   components: {
     Box,
-    Window
+    Infobar
   },
   data() {
     return {
       termo: ''
     }
   },
-
-  activated() { //Quando usar keep alive
-    //this._obterTodosPerfis();
+  activated() { //Quando usar keep alive//mounted() {
+    this._todosUsuarios();
   },
   methods: {
-  /*
-    ...mapActions('perfil', [
-      '_obterTodosPerfis',
-      '_pesquisarPerfilPorNome'
+    ...mapActions('usuario', [
+      '_todosUsuarios',
+      '_pesquisarUsuarioPorNome'
     ])
-    */
   },
   computed: {
-  /*
-    ...mapGetters('perfil', [
-      '__listaPerfis'
+    ...mapGetters('usuario', [
+      '__listaUsuarios'
     ]),
-    */
     ...mapGetters('usuario', [
       '__permissao'
     ])
   }
-
 }
 </script>

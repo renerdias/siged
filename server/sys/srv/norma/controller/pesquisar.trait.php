@@ -50,20 +50,6 @@ trait pesquisar {
         return $resultado;
     }
     /**
-     * Método responsável por encontrar normas do município
-     *
-     * @access public
-     * @static
-     * @param int $_id ID do município
-     * @return mixed Retorna os registros da tabela que satisfação o id do município informado
-     */
-    public static function pesquisarPorMunicipio($_id) {
-        DBTransaction::open('siged');
-        $resultado = Norma::pesquisarPorMunicipio($_id);
-        DBTransaction::commit();
-        return $resultado;
-    }
-    /**
      * Método responsável retornar todos os registros da tabela
      *
      * @access public

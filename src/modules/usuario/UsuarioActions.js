@@ -38,18 +38,14 @@ export const autenticarUsuario = ({
         if (resultado.execucao == "sucesso") {
           let usuario = resultado.dados;
           if (usuario.autenticado) {
+            commit('CARREGAR_PERMISSOES', usuario.permissao);
             commit('AUTENTICACAO_SUCESSO', usuario);
-            notyf.confirm('Olá ' + usuario.nome + ', seja bem-vindo(a)!');
-            setTimeout(function() {
-              notyf.confirm('Tenha um bom trabalho!');
-            }, 3000);
-            resolve()
+            resolve(usuario);
           }
         } else if (resultado.execucao == "erro") {
           commit('FALHA_AUTENTICACAO');
           notyf.alert(resultado.mensagem);
           console.error(resultado.log);
-          reject()
         }
       })
       .catch((erro) => {
@@ -85,11 +81,11 @@ export const _todosUsuarios = ({
 /**
  * Pesquisa usuario por nome
  */
-export const _pesquisarUsuarioPorNome = ({
+export const _pesquisarUsuario = ({
   commit,
   dispatch
-}, nome) => {
-  usuarioService.pesquisarPorNome(nome)
+}, termo) => {
+  usuarioService.pesquisar(termo)
     .then((response, erro) => {
       let resultado = response.data;
       if (resultado.execucao == "sucesso") {

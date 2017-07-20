@@ -2,7 +2,7 @@
 
 namespace root\server\sys\lib\util;
 
-use root\server\sys\lib\util;
+use root\server\sys\lib\util\TUtil;
 use root\server\sys\lib\config\Config;
 /**
  * Trecho de código que concentra os métodos de backup
@@ -23,27 +23,21 @@ trait Backup {
   * @return {type} Boolean
   */
 //TODO Backup PostgreSQL->Remover configurações de conexão daqui
-    public static function backup_postgreSQL() {
+    public static function backup_postgreSQL($name) {
       //TODO: backup_postgreSQL deve sr revisto
-      $config = Config::load(dirname(__FILE__). '../config/config.json');
-      $conf = $conf->get('connection.' . $name);
+      #Pega o caminho da pasta root do servidor web (www)
+      $root = $_SERVER["DOCUMENT_ROOT"];
+      $config = Config::load($root . '/r2/siged/server/sys/config/config.json');
+      $conf = $config->get('connection.' . $name);
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
-      $SGDB = $conf->sgdb;
-      $server = $conf->server;
-      $port = $conf->port;
-      $dbname = $conf->dbname;
-      $user = $conf->user;
-      $password = $conf->password;
+      $DBHost = $conf['server'];
+      $DBPort = $conf['port'];
+      $DB = $conf['dbname'];
+      $DBUser = $conf['user'];
+      $DBPass = $conf['password'];
+      $filename = TUtil::time__is_now('Ymd-Hms');
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
-
-        //"pg_dump --host $DBServer --port $DBPort -U $DBUser --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file > saida.psql"
-        $DBHost = "localhost";
-        $DBPort = "5432";
-        $DB = "siged";
-        $DBUser = "postgres";
-        $DBPass = "postgres";
-        $filename = TUil::time__is_now('Ymd-Hms');
-
+      //TODO: Criar no config path para pg_dump para backup/restore
         $comand = "export PGPASSWORD=$DBPass && export PGUSER=$DBUser";
         $comand .= " && /opt/PostgreSQL/9.6/bin/pg_dump --host $DBHost --port $DBPort -d $DB --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file '$DB-$filename.r2bk' > error.log";
         $comand .=" && unset PGPASSWORD=$DBPass && unset PGUSER=$DBUser";

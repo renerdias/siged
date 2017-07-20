@@ -74,7 +74,7 @@ const router = new VueRouter({
       beforeEnter: requererAutenticacao,
       children: [{
           path: '',
-          component: require('./modules/norma/components/NormaResultado.vue'),
+          component: require('./modules/norma/components/NormaPesquisa.vue'),
           beforeEnter: requererAutenticacao
         },
         {
@@ -83,7 +83,7 @@ const router = new VueRouter({
           beforeEnter: requererAutenticacao
         },
         {
-          path: 'novo',
+          path: 'resultado',
           component: require('./modules/norma/components/NormaResultado.vue'),
           beforeEnter: requererAutenticacao
         },
@@ -191,6 +191,7 @@ const router = new VueRouter({
     }
   ]
 });
+
 
 import App from './App.vue';
 new Vue({

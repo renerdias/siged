@@ -23,6 +23,9 @@ export const pesquisarPorId = (id) => {
 export const pesquisarPorNome = (nome) => {
   return api.get(URL_USUARIO + '/pesquisar.php?por=nome&nome=' + nome);
 }
+export const pesquisar = (termo) => {
+  return api.get(URL_USUARIO + '/pesquisar.php?por=geral&termo=' + termo);
+}
 export const pesquisarPorMunicipio = (id) => {
   return api.get(URL_USUARIO + '/pesquisar.php?por=municipio&id=' + id);
 }

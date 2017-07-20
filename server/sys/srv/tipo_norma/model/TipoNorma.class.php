@@ -21,15 +21,20 @@ use root\server\sys\lib\util\TUtil;
  */
 class TipoNorma extends SQLOne
 {
-     const TABLE_NAME = 'public.ts_tipo_norma';
+     const TABLE_NAME = 'sistema.ts_tipo_norma';
      protected static $PRIMARY_KEY = 'id_tipo_norma';
 
 
     public function todos(){
-        # Cria uma instância de SQLSelect
-        $criteria = new SQLCriteria;
-        $criteria->setProperty('order', 'ds_tipo_norma asc');
-        return SQLAll::findAll($criteria);
+      # Cria uma instância de um repositório
+      $sql = new SQLAll(self::TABLE_NAME);
+      # Carrega lista de registros
+      $criteria = new SQLCriteria;
+      $criteria->setProperty('order', 'ds_tipo_norma asc');
+      # Carrega lista de registros
+      $resultado = $sql->findAll($criteria);
+      # Retorno
+      return $resultado;
     }
 }
 ?>

@@ -6,6 +6,10 @@
 require_once "../../../../../Autoloader.php";
 # Obtém uma instância de Autoloader
 Autoloader::getInstance('root\\');
+
+use root\server\sys\lib\exception\ManageException;
+  $error = new ManageException(); // Instanciar o objeto.
+  $error->register();
 ?>
 <?php
 header('Access-Control-Allow-Origin: *');
@@ -78,8 +82,13 @@ try {
                     $resultado['execucao'] = 'sucesso';
                     $resultado['dados'] = $usuario;
                     break;
+                case "geral":
+                        $termo = $_GET['termo'];
+                        $usuarios = UsuarioCtrl::pesquisar($termo);
+                        $resultado['execucao'] = 'sucesso';
+                        $resultado['dados'] = $usuarios;
+                        break;
                 case "todos":
-
                     $usuarios = UsuarioCtrl::todos();
                     //$user['features'] = UsuarioCtrl::getAlowed($user['id_perfil']);
                     //var_dump(UsuarioCtrl::getAlowed($user['id_perfil']));

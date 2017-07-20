@@ -26,10 +26,15 @@ class ValidaNorma {
         session_start();
         #Obtém as credenciais do usuário
         $credencial = $_SESSION["credencial"];
-        $validate->set('"ID Usuário"', $credencial['id'], 'id_usuario')->is_integer()->is_required();
-        $validate->set('"Nome do Norma"', $norma->no_norma, 'no_norma')->is_string()->is_required();
-        $validate->set('"Nome do Norma Fonético"', TUtil::fonetizar($norma->no_norma), 'no_norma_fn')->is_string()->is_required();
-        $validate->set('"Municipio"', $norma->id_municipio, 'id_municipio')->is_integer()->is_required();
+        #$validate->set('"ID Usuário"', $credencial['id'], 'id_usuario')->is_integer()->is_required();
+        //$validate->set('"ID Usuário"', 1, 'id_usuario')->is_integer()->is_required();
+        $validate->set('"Ementa da Norma"', $norma->ds_ementa, 'ds_ementa')->is_string()->is_required();
+        //$validate->set('"Ementa da Norma Fonético"', TUtil::fonetizar($norma->ds_ementa), 'ds_ementa_fn')->is_string()->is_required();
+        $validate->set('"Tipo de Norma"', $norma->id_tipo_norma, 'id_tipo_norma')->is_integer()->is_required();
+        $validate->set('"Nº da Norma"', $norma->nu_norma, 'nu_norma')->is_integer()->is_required();
+        $validate->set('"Descrição da Norma"', $norma->ds_norma, 'ds_norma')->is_string()->is_required();
+        $validate->set('"Data da Norma"', $norma->dt_norma, 'dt_norma');
+        $validate->set('"Data de Aprovação"', $norma->dt_aprovacao, 'dt_aprovacao')->is_required();
         if ($validate->validate()) {
             $this->registro = $validate->get_fields();
             return true;

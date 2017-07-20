@@ -3,6 +3,10 @@
 require_once "../../../../../Autoloader.php";
 # Obtém uma instância de Autoloader
 Autoloader::getInstance('root\\');
+
+use root\server\sys\lib\exception\ManageException;
+  $error = new ManageException(); // Instanciar o objeto.
+  $error->register();
 ?>
 <?php
 header('Access-Control-Allow-Origin: *');

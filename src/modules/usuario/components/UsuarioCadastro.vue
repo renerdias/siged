@@ -20,19 +20,15 @@
         </box>
       </box>
       <box direction="row" :padding="[10,5]">
-
-        <box direction="column" :padding="[0,5]" class="width__xs-35">
-          <label>CPF</label>
-          <input v-model="usuario.nu_cpf" v-mask="'###.###.###-##'" placeholder="___.___.___-__" type="text" />
-        </box>
+        <field label="CPF" type="mask" v-model="usuario.nu_cpf" mask="###.###.###-##" placeholder="___.___.___-__" direction="column" :padding="[0,5]" class="width__xs-35"></field>
         <box direction="column" :padding="[0,5]" class="width__xs-35">
           <label>Protegido</label>
           <box direction="row" center class="width__xs-100 button-bar">
-            <div class="button-bar__item box r2-expand">
+            <div class="button-bar__item box box__is-expand">
               <input type="radio" name="protegido" v-model="usuario.st_protegido" value="S">
               <button class="button-bar__button">Sim</button>
             </div>
-            <div class="button-bar__item box r2-expand">
+            <div class="button-bar__item box box__is-expand">
               <input type="radio" name="protegido" v-model="usuario.st_protegido" value="N">
               <button class="button-bar__button">Não</button>
             </div>
@@ -41,23 +37,14 @@
         </box>
       </box>
       <box direction="row" :padding="[10,5]">
-        <box direction="column" :padding="[0,5]" class="width__xs-100">
-          <label>Nome</label>
-          <input v-model="usuario.no_usuario" v-validate="'required|min:5|max:100'" name="no_usuario" data-vv-as="Nome" :class="{'border__is-red': errors.has('no_usuario') }" type="text" />
-          <span v-show="errors.has('no_usuario')" class="text__is-red">{{ errors.first('no_usuario') }}</span>
-        </box>
+        <field label="Nome" type="text" v-model="usuario.no_usuario" direction="column" :padding="[0,5]" class="width__xs-100"></field>
       </box>
       <box direction="row" :padding="[10,5]">
-        <box direction="column" :padding="[0,5]" class="width__xs-50">
-          <label>login</label>
-          <input v-model="usuario.lg_usuario" v-validate="'required'" name="lg_usuario" data-vv-as="Login" :class="{'border__is-red': errors.has('lg_usuario') }" type="text" />
-          <span v-show="errors.has('lg_usuario')" class="text__is-red">{{ errors.first('lg_usuario') }}</span>
-        </box>
-        <box direction="column" :padding="[0,5]" class="width__xs-50">
-          <label>Senha</label>
-          <input v-model="usuario.pw_usuario" v-validate="'required'" name="pw_usuario" data-vv-as="Senha" :class="{'border__is-red': errors.has('pw_usuario') }" type="password" />
-          <span v-show="errors.has('pw_usuario')" class="text__is-red">{{ errors.first('pw_usuario') }}</span>
-        </box>
+        <field label="Login" type="text" v-model="usuario.lg_usuario" direction="column" :padding="[0,5]" class="width__xs-50"></field>
+        <field label="Senha" type="text" v-model="usuario.pw_usuario" direction="column" :padding="[0,5]" class="width__xs-50"></field>
+      </box>
+      <box direction="row" :padding="[10,5]">
+        <field label="Perfil" type="text" v-model="usuario.id_perfil" direction="column" :padding="[0,5]" class="width__xs-100"></field>
       </box>
     </box>
     <box direction="row" reverse :padding="[5,10]" v-if="bloquear">
@@ -75,6 +62,7 @@
 import Box from "../../../components/r2-box.vue";
 import Infobar from "../../../components/r2-infobar.vue";
 import Window from "../../../components/r2-window.vue";
+import Field from "../../../components/r2-field.vue";
 import {
   mapActions,
   mapGetters
@@ -84,7 +72,8 @@ export default {
   components: {
     Infobar,
     Window,
-    Box
+    Box,
+    Field
   },
   data() {
     return {
@@ -100,16 +89,16 @@ export default {
     }
   },
   activated() { //Quando usar keep alive
-    this.init();
+    this.initialize();
   },
   computed: {
     ...mapGetters({
       '__permissao': 'usuario/__permissao',
-      '__listaPerfis': 'sexo/__listaPerfis'
+      '__listaPerfis': 'perfil/__listaPerfis'
     })
   },
   methods: {
-    init() {
+    initialize() {
       if (typeof this.$route.params.id !== typeof undefined) {
         if (this.__permissao.usuario.visualizar) {
           this.editar(this.$route.params.id);
@@ -142,7 +131,6 @@ export default {
     cancelar: function() {
       this.usuario = '';
       this.exibirBarraErro(false);
-      this.errors.clear();
       this.$router.push('/usuario/');
     },
     editar: function(id) {
@@ -153,15 +141,13 @@ export default {
       })
     },
     salvar(usuario) {
-      this.$validator.validateAll();
-      if (!this.errors.any()) {
-        this._salvarUsuario(usuario).then(() => {
-          this.exibirBarraErro(false);
-          this.$router.push('/usuario/');
-        }).catch((erro) => {
-          this.exibirBarraErro(true, erro);
-        })
-      }
+      this._salvarUsuario(usuario).then(() => {
+        this.exibirBarraErro(false);
+        this.$router.push('/usuario/');
+      }).catch((erro) => {
+        this.exibirBarraErro(true, erro);
+      })
+
     }
   }
 }

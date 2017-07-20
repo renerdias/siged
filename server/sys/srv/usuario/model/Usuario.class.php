@@ -48,13 +48,40 @@ $usuario->setPermission(id_perfil);
   * @return mixed Retorna uma lista de registros
   */
  public static function todos(){
-     # Cria uma instância de um repositório
-     $sql = new SQLAll(self::TABLE_NAME);
-     # Carrega lista de registros
-     $result = $sql->getAll();
-     # Retorno
-     return $result;
- }
+   # Cria uma instância de SQLSelect
+   $sql = new SQLSelect;
+   $sql->setTable(self::TABLE_NAME);
+   $sql->setColumn('tb_usuario.st_registro');
+   $sql->setColumn('tb_usuario.id_usuario');
+   $sql->setColumn('tb_usuario.st_protegido');
+   $sql->setColumn('tb_usuario.no_usuario');
+   $sql->setColumn('tb_usuario.nu_cpf');
+   $sql->setColumn('tb_usuario.dt_ultimo_acesso');
+   $sql->setColumn('tb_usuario.id_perfil');
+   $sql->setColumn('tb_perfil.no_perfil');
+   $sql->setJoin('LEFT JOIN','public.tb_perfil','tb_perfil.id_perfil','tb_usuario.id_perfil');
+   $criteria = new SQLCriteria;
+   $criteria->setProperty('order', 'no_usuario asc');
+   # Atribui o critério passado como parâmetro
+   $sql->setCriteria($criteria);
+   # Obtém uma transação ativa, caso haja
+   if ($conn = DBTransaction::get()) {
+       $collection= $conn->Query($sql->getSQL());
+       $result = array();
+       if ($collection) {
+           # Percorre os resultados da consulta, retornando um objeto
+           while ($line = $collection->fetchObject()) {
+               # Armazena no array $result;
+               $result[] = $line;
+           }
+       }
+       return $result;
+   } else {
+       # Se não tiver transação, retorna uma exceção
+       throw new Exception('Não há transação ativa!!');
+   }
+}
+ 
 /**
  *
  * @param type $username
@@ -75,17 +102,53 @@ public static function login($username,$password){
         # Retorno
         return SQL::select('SELECT distinct on (no_funcionalidade) * FROM sistema.ts_funcionalidade');
     }
-    public static function getAllowedByProfile($id_perfil, $_name) {
+    public static function obterPermissoesPorPerfil($id_perfil) {
         # Cria uma instância de SQLSelect
         $sql = new SQLSelect;
         $sql->setTable('public.vw_perfil_permissao');
-        $sql->setColumn('no_acao');
-        $sql->setColumn('ds_acao');
+        $sql->setColumn('*');
+        //$sql->setColumn('ds_acao');
         #$sql->setColumn('st_permitido');
-        $sql->setColumn('permissao');
+        //$sql->setColumn('permissao');
         $criteria = new SQLCriteria;
         $criteria->set(new SQLFilter('id_perfil', '=', $id_perfil));
-        $criteria->set(new SQLFilter('no_funcionalidade', '=', $_name),' AND ');
+        # Atribui o critério passado como parâmetro
+        $sql->setCriteria($criteria);
+        # Obtém uma transação ativa, caso haja
+        if ($conn = DBTransaction::get()) {
+            $collection= $conn->Query($sql->getSQL());
+            $result = array();
+            if ($collection) {
+                # Percorre os resultados da consulta, retornando um objeto
+                while ($line = $collection->fetchObject()) {
+                    # Armazena no array $result;
+                    $result[] = $line;
+                }
+            }
+            return $result;
+        } else {
+            # Se não tiver transação, retorna uma exceção
+            throw new Exception('Não há transação ativa!!');
+        }
+    }
+    public static function pesquisar($termo) {
+        # Cria uma instância de SQLSelect
+        $sql = new SQLSelect;
+        $sql->setTable(self::TABLE_NAME);
+        $sql->setColumn('tb_usuario.st_registro');
+        $sql->setColumn('tb_usuario.id_usuario');
+        $sql->setColumn('tb_usuario.st_protegido');
+        $sql->setColumn('tb_usuario.no_usuario');
+        $sql->setColumn('tb_usuario.nu_cpf');
+        $sql->setColumn('tb_usuario.dt_ultimo_acesso');
+        $sql->setColumn('tb_usuario.id_perfil');
+        $sql->setColumn('tb_perfil.no_perfil');
+        $sql->setJoin('LEFT JOIN','public.tb_perfil','tb_perfil.id_perfil','tb_usuario.id_perfil');
+        $criteria = new SQLCriteria;
+        $criteria->set(new SQLFilter('no_usuario', 'ilike', "%{$termo}%"));
+        $criteria->set(new SQLFilter('nu_cpf', 'ilike', "%{$termo}%"), 'OR');
+        $criteria->set(new SQLFilter('no_perfil', 'ilike', "%{$termo}%"), 'OR');
+        $criteria->setProperty('order', 'no_usuario asc');
         # Atribui o critério passado como parâmetro
         $sql->setCriteria($criteria);
         # Obtém uma transação ativa, caso haja

@@ -21,33 +21,7 @@ const state = {
   usuario: novoUsuario,
   autenticacao: {},
   falha_autenticacao: 0,
-  permissao: {
-    usuario: {
-      visualizar: true,
-      editar: true,
-      inserir: true
-    },
-    pessoa: {
-      visualizar: true,
-      editar: true,
-      inserir: true
-    },
-    estabelecimento: {
-      visualizar: true,
-      editar: true,
-      inserir: true
-    },
-    norma: {
-      visualizar: true,
-      editar: true,
-      inserir: true
-    },
-    logradouro: {
-      visualizar: true,
-      editar: true,
-      inserir: true
-    }
-  }
+  permissao: []
 }
 
 const mutations = {
@@ -60,7 +34,8 @@ const mutations = {
     state.falha_autenticacao = 0;
     state.usuarios = []
     state.usuario = novoUsuario;
-    state.autenticacao = {}
+    state.autenticacao = {};
+    state.permissao = [];
     //localStorage.removeItem("usuario");
     //Esvazia todas a keys da storage.
     localStorage.clear();
@@ -124,6 +99,15 @@ const mutations = {
    */
   CARREGAR_USUARIOS(state, usuarios) {
     state.usuarios = usuarios;
+  },
+  /**
+   *
+   * @param {type} state
+   * @param {type} usuarios
+   * @returns {undefined}
+   */
+  CARREGAR_PERMISSOES(state, permissoes) {
+    state.permissao = permissoes;
   },
   /**
    *

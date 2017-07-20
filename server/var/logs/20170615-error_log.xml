@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<errors>
+	<error type="AVISO DO USUARIO" code="1024"><details line="19" file="/opt/ApachePHP/apache/www/r2/siged/server/sys/srv/usuario/interface/pesquisar.php" message="teste de rero" datetime="15-06-2017 09:31:27"/><details line="30" file="/opt/ApachePHP/apache/www/r2/siged/server/sys/srv/tipo_norma/model/TipoNorma.class.php" message="sistema.ts_tipo_norma" datetime="15-06-2017 21:04:52"/><details line="30" file="/opt/ApachePHP/apache/www/r2/siged/server/sys/srv/tipo_norma/model/TipoNorma.class.php" message="sistema.ts_tipo_norma" datetime="15-06-2017 21:06:40"/><details line="30" file="/opt/ApachePHP/apache/www/r2/siged/server/sys/srv/tipo_norma/model/TipoNorma.class.php" message="sistema.ts_tipo_norma" datetime="15-06-2017 21:07:51"/></error>
+</errors>

@@ -41,7 +41,7 @@ final class SQLAll {
      * @param object $_criteria Recebe um objeto do tipo SQLCriteria
      * @return mixed $result Retorna resultado em forma de array
      */
-    public static function findAll( $_criteria) {
+    public function findAll($_criteria) {
         # Cria uma instância de SQLSelect
         $sql = new SQLSelect;
         $sql->setTable($this->table);

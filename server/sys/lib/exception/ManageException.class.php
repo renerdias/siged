@@ -149,7 +149,8 @@ Class ManageException
 	 */
 	private function getFileLog()
 	{
-		return date("Ymd") . "-error_log.xml";
+		//TODO: ManageException path para log deve ser revisto
+		return '/opt/ApachePHP/apache/www/r2/siged/server/var/logs/' . date("Ymd") . "-error_log.xml";
 	}
 	/**
 	 * Cria arquivo log xml

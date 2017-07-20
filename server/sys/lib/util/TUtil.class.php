@@ -25,6 +25,7 @@ final class TUtil {
   use Fonetizar;
   use Guid;
   use Number;
+  use Time;
   use validators\Doc;
   Use validators\Email;
   use validators\Number;

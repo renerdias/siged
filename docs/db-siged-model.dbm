@@ -3,9 +3,10 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.0-beta" last-position="0,180" last-zoom="1.05"
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,150" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="siged" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
+	<comment><![CDATA[Sistema Integrado de Gestao Eletronica de Documentos]]></comment>
 </database>
 
 <tag name="red_tables">
@@ -55,7 +56,7 @@ Comentário.]]></comment>
 
 <schema name="sistema" rect-visible="true" fill-color="#9c27b0">
 	<role name="postgres"/>
-	<comment><![CDATA[Schema de tabelas sistemaes com dados padronizados, nao podendo ser alterados pelo usuario comun.]]></comment>
+	<comment><![CDATA[Schema de tabelas sistemas com dados padronizados, nao podendo ser alterados pelo usuario comun.]]></comment>
 </schema>
 
 <table name="ts_tipo_norma">
@@ -63,7 +64,7 @@ Comentário.]]></comment>
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de tipos de normas aceitas pelo sistema]]></comment>
 	<tag name="purple_tables"/>
-	<position x="40" y="700"/>
+	<position x="180" y="600"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro:
@@ -78,7 +79,7 @@ A = Ativo / I = Inativo]]></comment>
 		<comment><![CDATA[Nome do tipo de norma.]]></comment>
 	</column>
 	<column name="ds_tipo_norma" not-null="true">
-		<type name="character varying" length="250"/>
+		<type name="character varying" length="0"/>
 		<comment><![CDATA[Descriçao do tipo de norma.]]></comment>
 	</column>
 	<constraint name="pk_tipo_norma" type="pk-constr" table="sistema.ts_tipo_norma">
@@ -107,7 +108,7 @@ A•12•Lei Delegada•É lei baixada pelo prefeito. Para que isso aconteça, �
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela sistema de municipios.]]></comment>
 	<tag name="indigo_tables"/>
-	<position x="40" y="400"/>
+	<position x="180" y="300"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro:
@@ -5716,7 +5717,7 @@ A = Ativo / I = Inativo]]></comment>
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela sistema de Unidades Federativas (Estados).]]></comment>
 	<tag name="indigo_tables"/>
-	<position x="40" y="560"/>
+	<position x="180" y="440"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro:
@@ -5779,7 +5780,7 @@ A = Ativo / I = Inativo.]]></comment>
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de documentos da pessoa.]]></comment>
 	<tag name="red_tables"/>
-	<position x="1060" y="403"/>
+	<position x="1500" y="203"/>
 	<column name="id_documento">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
@@ -5801,7 +5802,7 @@ A = Ativo
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de endereços.]]></comment>
 	<tag name="indigo_tables"/>
-	<position x="1060" y="483"/>
+	<position x="1120" y="440"/>
 	<column name="id_endereco" not-null="true">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID sequencial. Chave primária.]]></comment>
@@ -5827,7 +5828,7 @@ A = Ativo
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de tipos de documentos.]]></comment>
 	<tag name="purple_tables"/>
-	<position x="320" y="1220"/>
+	<position x="460" y="1120"/>
 </table>
 
 <table name="tb_usuario">
@@ -5835,7 +5836,7 @@ A = Ativo
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de usuarioes com autorizaçao de uso do sistema.]]></comment>
 	<tag name="black_tables"/>
-	<position x="1700" y="583"/>
+	<position x="1140" y="540"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro: A = Ativo / I = Inativo]]></comment>
@@ -5871,6 +5872,9 @@ A = Ativo
 	<column name="dt_ultimo_acesso" not-null="true">
 		<type name="timestamp" length="0"/>
 	</column>
+	<column name="id_perfil" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
 	<constraint name="pk_usuario" type="pk-constr" table="public.tb_usuario">
 		<columns names="id_usuario" ref-type="src-columns"/>
 		<comment><![CDATA[Chave primaria da tabela tb_usuario.]]></comment>
@@ -5882,8 +5886,8 @@ A = Ativo
 		<columns names="lg_usuario" ref-type="src-columns"/>
 	</constraint>
 	<initial-data>
-<![CDATA[st_registro•dt_modificacao•id_usuario_id•id_usuario•st_protegido•no_usuario•nu_cpf•lg_usuario•pw_usuario•dt_ultimo_acesso⸣
-A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•renerdias•01/01/2018 00:00:00]]>
+<![CDATA[st_registro•dt_modificacao•id_usuario_id•id_usuario•st_protegido•no_usuario•nu_cpf•lg_usuario•pw_usuario•dt_ultimo_acesso•id_perfil⸣
+A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•renerdias•01/01/2018 00:00:00•1]]>
 	</initial-data>
 </table>
 
@@ -5892,7 +5896,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de perfis de acesso ao sistema.]]></comment>
 	<tag name="black_tables"/>
-	<position x="1680" y="403"/>
+	<position x="1740" y="203"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro: A = Ativo / I Inativo.]]></comment>
@@ -5911,7 +5915,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<column name="st_protegido" not-null="true" default-value="'N'">
 		<type name="char" length="1"/>
 	</column>
-	<column name="ds_perfil" not-null="true">
+	<column name="no_perfil" not-null="true">
 		<type name="character varying" length="25"/>
 		<comment><![CDATA[Descriçao do perfil]]></comment>
 	</column>
@@ -5920,10 +5924,10 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 		<comment><![CDATA[Chave primaria da tabela tb_perfil.]]></comment>
 	</constraint>
 	<constraint name="uq_ds_perfil" type="uq-constr" table="public.tb_perfil">
-		<columns names="ds_perfil" ref-type="src-columns"/>
+		<columns names="no_perfil" ref-type="src-columns"/>
 	</constraint>
 	<initial-data>
-<![CDATA[id_perfil•st_registro•dt_modificacao•st_protegido•ds_perfil•id_usuario⸣
+<![CDATA[id_perfil•st_registro•dt_modificacao•st_protegido•no_perfil•id_usuario⸣
 1•A•01/01/17•S•Administrador Geral•1⸣
 2•A•01/01/17•N•Administrador•1]]>
 	</initial-data>
@@ -5934,7 +5938,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de funcionalidades do sistema]]></comment>
 	<tag name="black_tables"/>
-	<position x="280" y="1540"/>
+	<position x="320" y="1360"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro: A =  Ativo / I = Inativo.]]></comment>
@@ -5961,16 +5965,19 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	</constraint>
 	<initial-data>
 <![CDATA[id_funcionalidade•st_registro•ds_funcionalidade•no_funcionalidade•ds_acao•no_acao⸣
-1•A•Cadastro de Usuário•cadastro_usuario•Inserir•inserir⸣
-2•A•Cadastro de Usuário•cadastro_usuario•Editar•editar⸣
-3•A•Cadastro de Usuário•cadastro_usuario•Visualizar•visualizar⸣
-4•A•Cadastro de Usuário•cadastro_usuario•Inserir Administrador•inserir_admin⸣
-5•A•Cadastro de Usuário•cadastro_usuario•Editar Administrador•editar_admin⸣
-6•A•Cadastro de Perfil•cadastro_perfil•Visualizar•visualizar⸣
-7•A•Cadastro de Perfil•cadastro_perfil•Inserir•inserir⸣
-8•A•Cadastro de Perfil•cadastro_perfil•Editar•editar⸣
-9•A•Cadastro de Perfil•cadastro_perfil•Inserir Administrador•inserir_admin⸣
-10•A•Cadastro de Perfil•cadastro_perfil•Editar Administrador•editar_admin]]>
+1•A•Cadastro de Usuário•usuario•Inserir•inserir⸣
+2•A•Cadastro de Usuário•usuario•Editar•editar⸣
+3•A•Cadastro de Usuário•usuario•Visualizar•visualizar⸣
+4•A•Cadastro de Usuário•usuario•Inserir Administrador•inserir_admin⸣
+5•A•Cadastro de Usuário•usuario•Editar Administrador•editar_admin⸣
+6•A•Cadastro de Perfil•perfil•Visualizar•visualizar⸣
+7•A•Cadastro de Perfil•perfil•Inserir•inserir⸣
+8•A•Cadastro de Perfil•perfil•Editar•editar⸣
+9•A•Cadastro de Perfil•perfil•Inserir Administrador•inserir_admin⸣
+10•A•Cadastro de Perfil•perfil•Editar Administrador•editar_admin⸣
+11•A•Cadastro de Norma•norma•Visualizar•visualizar⸣
+12•A•Cadastro de Norma•norma•Inserir•inserir⸣
+13•A•Cadastro de Norma•norma•Editar•editar]]>
 	</initial-data>
 </table>
 
@@ -5979,7 +5986,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<comment><![CDATA[Relacionamento entre a tabela ts_funcionalidade e tb_perfil.]]></comment>
 	<tag name="black_tables"/>
-	<position x="1700" y="943"/>
+	<position x="1760" y="683"/>
 	<column name="st_permitido" not-null="true">
 		<type name="char" length="1"/>
 	</column>
@@ -5987,13 +5994,31 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<customidxs object-type="column">
 		<object name="id_funcionalidade" index="0"/>
 		<object name="id_perfil" index="1"/>
+		<object name="id_usuario" index="3"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
 		<object name="fk_tb_perfil" index="1"/>
+		<object name="fk_tb_usuario" index="3"/>
 		<object name="fk_ts_funcionalidade" index="0"/>
 		<object name="pk_rl_funcionalidade_perfil" index="2"/>
 	</customidxs>
+	<initial-data>
+<![CDATA[id_funcionalidade•id_perfil•st_permitido•id_usuario⸣
+1•1•A•1⸣
+2•1•A•1⸣
+3•1•A•1⸣
+4•1•A•1⸣
+5•1•A•1⸣
+6•1•A•1⸣
+7•1•A•1⸣
+8•1•A•1⸣
+9•1•A•1⸣
+10•1•A•1⸣
+11•1•A•1⸣
+12•1•A•1⸣
+13•1•A•1]]>
+	</initial-data>
 </table>
 
 <relationship name="ts_funcionalidade_tem_muitos_rl_funcionalidade_perfil" type="rel1n"
@@ -6030,14 +6055,14 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 <view name="vw_perfil_funcionalidade">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1340" y="1863"/>
+	<position x="1400" y="1603"/>
 	<reference>
 		<expression><![CDATA[SELECT
 	public.tb_perfil.id_perfil, 
     public.tb_perfil.st_registro, 
     public.tb_perfil.dt_modificacao, 
     public.tb_perfil.st_protegido, 
-    public.tb_perfil.ds_perfil,
+    public.tb_perfil.no_perfil,
     sistema.ts_funcionalidade.id_funcionalidade,     
     sistema.ts_funcionalidade.ds_funcionalidade, 
     sistema.ts_funcionalidade.no_funcionalidade, 
@@ -6051,10 +6076,12 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 <view name="vw_perfil_permissao">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1060" y="1863"/>
+	<position x="1120" y="1603"/>
 	<reference>
 		<expression><![CDATA[SELECT vw_perfil_funcionalidade.id_perfil,
+vw_perfil_funcionalidade.no_perfil,
     vw_perfil_funcionalidade.id_funcionalidade,
+    vw_perfil_funcionalidade.no_funcionalidade,
     vw_perfil_funcionalidade.ds_acao,
     vw_perfil_funcionalidade.no_acao,
         CASE rl_funcionalidade_perfil.st_permitido
@@ -6067,16 +6094,11 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	</reference>
 </view>
 
-<schema name="sistema_cp" rect-visible="true" fill-color="#9c27b0">
-	<role name="postgres"/>
-	<comment><![CDATA[Schema de tabelas sistemaes com dados padronizados, nao podendo ser alterados pelo usuario comun.]]></comment>
-</schema>
-
 <table name="modelo">
 	<schema name="sistema"/>
 	<role name="postgres"/>
 	<tag name="blue_tables"/>
-	<position x="160" y="1240"/>
+	<position x="300" y="1140"/>
 	<initial-data>
 <![CDATA[st_registro•id_tipo_carga_horaria•co_tipo_carga_horaria•sg_tipo_carga_horaria•ds_tipo_carga_horaria•cp_sisap⸣
 A•1•1•RB/AS•REGIME BASICO/AULAS SEMANAIS•03/2017⸣
@@ -6108,5 +6130,127 @@ A•26•32•PROA•PROGRAMAS/PROJ/ADMINISTRATIVOS•03/2017⸣
 A•27•33•SUPLE•ENSINO SUPLETIVO PROFESSOR•03/2017]]>
 	</initial-data>
 </table>
+
+<table name="tb_backup">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de documentos da pessoa.]]></comment>
+	<tag name="black_tables"/>
+	<position x="1160" y="740"/>
+	<column name="st_registro" not-null="true" default-value="'A'">
+		<type name="char" length="1"/>
+		<comment><![CDATA[Status do registro:
+A = Ativo
+/ I = Inativo]]></comment>
+	</column>
+	<column name="dt_modificacao" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Data de modificaçao do registro]]></comment>
+	</column>
+	<column name="id_backup" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
+	</column>
+	<column name="dt_inicio" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="dt_fim" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="tm_duracao" not-null="true">
+		<type name="time" length="0"/>
+	</column>
+	<column name="ds_tamanho" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="ds_detalhe">
+		<type name="character varying" length="100"/>
+	</column>
+	<constraint name="pk_backup" type="pk-constr" table="public.tb_backup">
+		<columns names="id_backup" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tb_norma">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de normas.]]></comment>
+	<tag name="red_tables"/>
+	<position x="1120" y="200"/>
+	<column name="st_registro" not-null="true" default-value="'A'">
+		<type name="char" length="1"/>
+		<comment><![CDATA[Status do registro:
+A = Ativo
+/ I = Inativo]]></comment>
+	</column>
+	<column name="dt_modificacao" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Data de modificaçao do registro]]></comment>
+	</column>
+	<column name="id_usuario" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="id_norma" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
+	</column>
+	<column name="id_tipo_norma" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nu_norma" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="ds_ementa" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="ds_ementa_fn" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="ds_norma" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="dt_norma">
+		<type name="date" length="0"/>
+	</column>
+	<column name="dt_aprovacao">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="pk_norma" type="pk-constr" table="public.tb_norma">
+		<columns names="id_norma" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_perfil" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_perfil" table="public.tb_usuario">
+	<columns names="id_perfil" ref-type="src-columns"/>
+	<columns names="id_perfil" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_tb_norma_ts_tipo_norma" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="sistema.ts_tipo_norma" table="public.tb_norma">
+	<columns names="id_tipo_norma" ref-type="src-columns"/>
+	<columns names="id_tipo_norma" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_tb_norma_tb_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_usuario" table="public.tb_norma">
+	<columns names="id_usuario" ref-type="src-columns"/>
+	<columns names="id_usuario" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_tb_usuario_tb_perfil" type="relfk"
+	 src-table="public.tb_usuario"
+	 dst-table="public.tb_perfil"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tb_norma_ts_tipo_norma" type="relfk"
+	 src-table="public.tb_norma"
+	 dst-table="sistema.ts_tipo_norma"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tb_norma_tb_usuario" type="relfk"
+	 src-table="public.tb_norma"
+	 dst-table="public.tb_usuario"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>

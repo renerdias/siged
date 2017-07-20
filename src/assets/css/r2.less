@@ -104,6 +104,41 @@
 .bg__is-yellow {
   background: @default__is-yellow !important;
 }
+/*BACKGROUND HOVER COLOR*/
+.bg__is-white__on-hover:hover {
+  background: @default__is-white !important;
+}
+
+.bg__is-light__on-hover:hover {
+  background: @default__is-light !important;
+}
+
+.bg__is-dark__on-hover:hover {
+  background: @default__is-dark !important;
+}
+
+.bg__is-orange__on-hover:hover {
+  background: @default__is-orange !important;
+}
+
+.bg__is-blue__on-hover:hover {
+  background: @default__is-blue !important;
+}
+
+.bg__is-red__on-hover:hover {
+  background: @default__is-red !important;
+}
+
+.bg__is-purple__on-hover:hover {
+  background: @default__is-purple !important;
+}
+
+.bg__is-green__on-hover:hover {
+  background: @default__is-green !important;
+}
+.bg__is-yellow__on-hover:hover {
+  background: @default__is-yellow !important;
+}
 //@text__is-dark: ;
 /*BORDER COLOR*/
 .border__is-white {
@@ -166,6 +201,9 @@ a {
   cursor: pointer;
   color: inherit;
 }
+ul {
+  list-style-type: none;
+}
 @import "_variables.less";
 @import "reset/normalize.less";
 
@@ -226,16 +264,17 @@ body {
   //.r2-column-reverse {
   flex-direction: column-reverse;
 }
-/*----------------------------------------------------------------------------*/
-.r2-column-center {
+.box__is-column-center {
   align-items: center;
   /*Alinhamento Vertical*/
 }
 
-.r2-row-center {
+.box__is-row-center {
   justify-content: center;
   /*Alinhamento Horizontal*/
 }
+/*----------------------------------------------------------------------------*/
+
 
 .r2-row-expand {
   align-items: stretch;
@@ -321,6 +360,7 @@ textarea[type=text] {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
+  background: transparent;
 }
 /*set border on focus*/
 input[type=email]:focus,

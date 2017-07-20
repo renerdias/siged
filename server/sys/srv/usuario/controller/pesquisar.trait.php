@@ -33,6 +33,13 @@ public static function autenticar($nome, $senha) {
         #Inicia sessao
         session_start();
         #Gera token
+        //var_dump($model->obterPermissoesPorPerfil($resultado[0]->id_perfil));
+        $permissoesPerfil = $model->obterPermissoesPorPerfil($resultado[0]->id_perfil);
+        //TODO: Alterar no_funcionalidade para modulo
+        #Agrupa permissões por módulo
+        foreach ($permissoesPerfil as $key) {
+          $permissoesPerfilAgrupadas[$key->no_funcionalidade][$key->no_acao] = $key->st_permitido;
+        }
         #Cria array com dados do usuario como id perfil
         $_SESSION["credencial"] = array(
             'id' => $resultado[0]->id_usuario,
@@ -41,10 +48,12 @@ public static function autenticar($nome, $senha) {
             'autenticado' => true,
             'token' => md5($nome . $senha),
             'perfil' => array (
-                'id' => 1,
-                'nome' => 'Administrador'
-            )
+                'id' => $resultado[0]->id_perfil,
+                'nome' => $resultado[0]->no_perfil
+            ),
+            'permissao' => $permissoesPerfilAgrupadas
         );
+        session_write_close();
         DBTransaction::commit();
         return true;
     } else {
@@ -173,6 +182,19 @@ public static function cleanAlowed($id_perfil) {
     public static function pesquisarPorNome($_name) {
         DBTransaction::open('siged');
         $result = Usuario::pesquisarPorNome();
+        DBTransaction::commit();
+        return $result;
+    }
+    /**
+     * Método responsável por encontrar registros
+     *
+     * @access public
+     * @static
+     * @return mixed Retorna os registros da tabela
+     */
+    public static function pesquisar($termo) {
+        DBTransaction::open('siged');
+        $result = Usuario::pesquisar($termo);
         DBTransaction::commit();
         return $result;
     }

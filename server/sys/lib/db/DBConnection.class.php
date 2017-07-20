@@ -37,16 +37,18 @@ final class DBConnection {
      * @return object Retorna uma instância do objeto PDO criada
      */
     public static function create($name) {
-      //TODO: DBConnection dever ser revista
-      $config = Config::load(dirname(__FILE__). '../../config/config.json');
-      $conf = $conf->get('connection.' . $name);
+      //TODO: DBConnection carregamento de configuração dever ser revista
+      //$config = Config::load(dirname(__FILE__). '../../config/config.json');
+      $config = Config::load('/opt/ApachePHP/apache/www/r2/siged/server/sys/config/config.json');
+      #Retorna uma array de confirações
+      $conf = $config->get('connection.' . $name);
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
-      $SGDB = $conf->sgdb;
-      $server = $conf->server;
-      $port = $conf->port;
-      $dbname = $conf->dbname;
-      $user = $conf->user;
-      $password = $conf->password;
+      $SGDB = $conf['sgdb'];
+      $server = $conf['server'];
+      $port = $conf['port'];
+      $dbname = $conf['dbname'];
+      $user = $conf['user'];
+      $password = $conf['password'];
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
 
         # Escolhe o driver de banco de dados a ser utilizado de acordo com o

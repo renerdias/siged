@@ -1,54 +1,95 @@
 <template>
 <!-- Init AppSidebar -->
 <box direction="column" expand style="" class="sidebar width__xs-30">
-  <box direction="row" center :padding="[0,20]" class="title" style="
-  height: 50px;
-  background-color: #4D90FE;
-  background-image: -webkit-linear-gradient(top, #4d90fe, #4787ed);
-  background-image: -moz-linear-gradient(top, #4d90fe, #4787ed);
-  background-image: -ms-linear-gradient(top, #4d90fe, #4787ed);
-  background-image: -o-linear-gradient(top, #4d90fe, #4787ed);
-  background-image: linear-gradient(top, #4d90fe, #4787ed);
-  color: #fff !important;">
-    <img style="height: 30px" src="src/assets/img/siged_logo.svg" />
-    <router-link to="/">
-      SiGed
-    </router-link>
+  <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 50px;">
+    <img style="height: 30px" src="src/assets/img/pasta.svg" />
+    <router-link to="/">SiGed</router-link>
   </box>
-  <ul class="nav">
-    <li>
-      <router-link to="/regimento"><i class="fa fa-book"></i>Regimento Interno</router-link>
-    </li>
-    <li>
-      <router-link to="/norma"><i class="fa fa-book"></i>Norma</router-link>
-    </li>
-    <li>
-      <router-link to="/norma/novo"><i class="fa fa-book"></i>Norma Novo</router-link>
-    </li>
-    <li>
-      <router-link to="/backup"><i class="fa fa-database"></i>Backup</router-link>
-    </li>
-    <li>
-      <router-link to="/configuracao"><i class="fa fa-cog"></i>Configuração</router-link>
-    </li>
-  </ul>
+  <sidebar-menu :datatree="datatree">
+  </sidebar-menu>
+  <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 30px;">
+    <i class="fa fa-user-o"></i>
+    <router-link to="/logout"><i class="fa fa-power-off"></i></router-link>
+  </box>
 </box>
 <!-- End AppSidebar -->
 </template>
 <script>
 import Box from "./components/r2-box.vue";
+import SidebarMenu from "./components/r2-sidebar-menu.vue";
 import {
   mapGetters
 } from 'vuex';
 
 export default {
   components: {
-    Box
+    Box,
+    SidebarMenu
   },
   computed: {
     ...mapGetters([
       'usuarioAutenticado'
     ])
+  },
+  data: function() {
+    return {
+      datatree: [{
+          name: 'Documento',
+          class: '',
+          icon: 'fa fa-file-text',
+          link: '#/norma/'
+          //title: 'fa fa-user'
+          //icon: 'fa fa-user'
+          //action: 'fa fa-user'
+          //el: 'fa fa-user'
+          //style: 'fa fa-user'
+          //link: 'fa fa-user'
+          //click: 'fa fa-user'
+          /*
+                  path: { type: String, required: true },
+  title: { type: String, required: true },
+  icon: { type: String, default: 'fa fa-link' },
+  isExact: { type: Boolean, default: fal
+  */
+        },
+        {
+          name: 'Ferramentas',
+          class: '',
+          icon: 'fa fa-wrench',
+          children: [{
+              name: 'Backup',
+              class: '',
+              icon: 'fa fa-database',
+              link: '#/backup'
+            },
+            {
+              name: 'Controle de Acesso',
+              class: '',
+              icon: 'fa fa-lock',
+              children: [{
+                  name: 'Perfil',
+                  class: '',
+                  icon: 'fa fa-users',
+                  link: '#/perfil'
+                },
+                {
+                  name: 'Usuário',
+                  class: '',
+                  icon: 'fa fa-user',
+                  link: '#/usuario'
+                }
+              ]
+            },
+            {
+              name: 'Configurações',
+              class: '',
+              icon: 'fa fa-cog',
+              link: '#/configuracao'
+            }
+          ]
+        }
+      ]
+    }
   },
   methods: {
     abrir(URL) {
@@ -80,10 +121,47 @@ export default {
   background: #333;
 }
 
-.content {
-  padding: 30px;
-  /*background: #eee;*/
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,7 +178,7 @@ export default {
 
 /* Demo Navigation */
 
-.title {
+.sidebar .title {
   font-size: 16px;
   line-height: 50px;
   text-align: center;

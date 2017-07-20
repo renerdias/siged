@@ -60,7 +60,7 @@ class Norma extends SQLOne
           # Se não tiver transação, retorna uma exceção
           throw new Exception('Não há transação ativa!!');
       }
-
+      /*
         # Cria uma instância de um repositório
         $sql = new SQLAll(self::TABLE_NAME);
         $criteria = new SQLCriteria;
@@ -70,28 +70,18 @@ class Norma extends SQLOne
         $result = $sql->findAll($criteria);
         # Retorno
         return $result;
+        */
     }
-    public static function pesquisarPorMunicipio($_id) {
-        # Cria uma instância de um repositório
-        $sql = new SQLAll(self::TABLE_NAME);
-        $criteria = new SQLCriteria;
-        $criteria->set(new SQLFilter('id_municipio', '=', "{$_id}"));
-        $criteria->setProperty('order', 'no_norma asc');
-        # Carrega lista de registros
-        $result = $sql->findAll($criteria);
-        # Retorno
-        return $result;
-    }
+
     public function todos(){
         # Cria uma instância de SQLSelect
         $sql = new SQLSelect;
         $sql->setTable(self::TABLE_NAME);
         $sql->setColumn('tb_norma.*');
-        $sql->setColumn('ts_municipio.no_municipio');
-        $sql->setColumn('ts_municipio.sg_uf');
-        $sql->setJoin('LEFT JOIN', 'sistema.ts_municipio', 'tb_norma.id_municipio','ts_municipio.id_municipio');
+        $sql->setColumn('ts_tipo_norma.no_tipo_norma');
+        $sql->setJoin('LEFT JOIN', 'sistema.ts_tipo_norma', 'tb_norma.id_tipo_norma','ts_tipo_norma.id_tipo_norma');
         $criteria = new SQLCriteria;
-        $criteria->setProperty('order', 'no_norma asc');
+        $criteria->setProperty('order', 'dt_norma asc');
         # Atribui o critério passado como parâmetro
         $sql->setCriteria($criteria);
         # Obtém uma transação ativa, caso haja
