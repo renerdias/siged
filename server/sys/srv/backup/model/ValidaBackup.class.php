@@ -4,6 +4,7 @@ namespace root\server\sys\srv\backup\model;
 
 use root\server\sys\lib\validate\Validate;
 use root\server\sys\lib\util\TUtil;
+use root\server\sys\lib\session\Session;
 
 class ValidaBackup {
   protected $erros;
@@ -20,16 +21,18 @@ class ValidaBackup {
         } else {
             $this->operacao = 'inserir';
         }
-        $validate->set('"Status"', $backup->st_registro, 'st_registro')->is_string()->contains(array('A','I'))->is_required();
-        $validate->set('"Data de Modificação"', date("d-m-Y H:i:s"), 'dt_modificacao')->is_required();
+        $validate->set('"Status"', 'A', 'st_registro')->is_string()->contains(array('A','I'))->is_required();
+        $validate->set('"Data de Modificação"', TUtil::time__is_now('d-m-Y H:i:s'), 'dt_modificacao')->is_required();
         #Inicia sessao
-        session_start();
+        $session = new Session();
         #Obtém as credenciais do usuário
-        $credencial = $_SESSION["credencial"];
+        $credencial = $session->init()->get("credencial");
         $validate->set('"ID Usuário"', $credencial['id'], 'id_usuario')->is_integer()->is_required();
         $validate->set('"Nome do Backup"', $backup->no_backup, 'no_backup')->is_string()->is_required();
-        $validate->set('"Nome do Backup Fonético"', TUtil::fonetizar($backup->no_backup), 'no_backup_fn')->is_string()->is_required();
-        $validate->set('"Municipio"', $backup->id_municipio, 'id_municipio')->is_integer()->is_required();
+        $validate->set('"Data de Inicio"', $backup->dt_inicio, 'dt_inicio')->is_required();
+        $validate->set('"Data de Conclusão"', $backup->dt_conclusao, 'dt_conclusao')->is_required();
+        $validate->set('"Duração"', $backup->tp_duracao, 'tp_duracao')->is_required();
+        $validate->set('"Tamanho"', $backup->ds_tamanho, 'ds_tamanho')->is_required();
         if ($validate->validate()) {
             $this->registro = $validate->get_fields();
             return true;

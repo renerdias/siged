@@ -40,7 +40,70 @@ export default {
       nonbreaking_force_tab: true,
       toolbar: self.toolbar,
       menubar: self.menubar,
-      plugins: self.plugins,
+      plugins: self.plugins, //wordcount -> plugin que mostra o contador de palavras
+      //content_css: ['mycontent.css', 'mycontent2.css']  // includes both CSS files in header, ability to have CSS with `,` in URL
+      content_style: "table {border-collapse: collapse;}",
+      content_css: "src/assets/css/tinymce.css",
+      font_size_style_values: "10px,12px,13px,14px,16px,18px,20px",
+      style_formats: [{
+        title: "Tabelas",
+        items: [{
+          title: 'Azul',
+          selector: 'table',
+          classes: 'table__is-blue'
+        }],
+      }, {
+        title: "Teste",
+        items: [{
+            title: 'Bold text',
+            inline: 'strong'
+          },
+          {
+            title: 'Red text',
+            inline: 'span',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Red header',
+            block: 'h1',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Badge',
+            inline: 'span',
+            styles: {
+              display: 'inline-block',
+              border: '1px solid #2276d2',
+              'border-radius': '5px',
+              padding: '2px 5px',
+              margin: '0 2px',
+              color: '#2276d2'
+            }
+          },
+          {
+            title: 'Table Red',
+            selector: 'table',
+            classes: 'table-red',
+            items: [{
+              title: 'Badge',
+              inline: 'span',
+              styles: {
+                display: 'inline-block',
+                border: '1px solid #2276d2',
+                'border-radius': '5px',
+                padding: '2px 5px',
+                margin: '0 2px',
+                color: '#2276d2'
+              }
+            }]
+          }
+        ],
+      }],
+      style_formats_merge: true,
       setup: function(editor) {
 
         editor.on('init', function() {

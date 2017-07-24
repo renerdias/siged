@@ -225,6 +225,7 @@ class Carbon extends DateTime
      */
     public function __construct($time = null, $tz = null)
     {
+      date_default_timezone_set('America/Sao_Paulo');
         // If the class has a test now set and we are trying to create a now()
         // instance then override as required
         if (static::hasTestNow() && (empty($time) || $time === 'now' || static::hasRelativeKeywords($time))) {

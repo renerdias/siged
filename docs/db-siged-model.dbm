@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="288,0" last-zoom="1"
 	 default-owner="postgres">
 <database name="siged" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
 	<comment><![CDATA[Sistema Integrado de Gestao Eletronica de Documentos]]></comment>
@@ -5780,7 +5780,7 @@ A = Ativo / I = Inativo.]]></comment>
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de documentos da pessoa.]]></comment>
 	<tag name="red_tables"/>
-	<position x="1500" y="203"/>
+	<position x="1500" y="200"/>
 	<column name="id_documento">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
@@ -5888,7 +5888,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<comment><![CDATA[Tabela de perfis de acesso ao sistema.]]></comment>
 	<tag name="black_tables"/>
-	<position x="1740" y="203"/>
+	<position x="1740" y="200"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro: A = Ativo / I Inativo.]]></comment>
@@ -5978,7 +5978,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<comment><![CDATA[Relacionamento entre a tabela ts_funcionalidade e tb_perfil.]]></comment>
 	<tag name="black_tables"/>
-	<position x="1760" y="683"/>
+	<position x="1760" y="680"/>
 	<column name="st_permitido" not-null="true">
 		<type name="char" length="1"/>
 	</column>
@@ -6043,7 +6043,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 <view name="vw_perfil_funcionalidade">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1400" y="1603"/>
+	<position x="1400" y="1600"/>
 	<reference>
 		<expression><![CDATA[SELECT
 	public.tb_perfil.id_perfil, 
@@ -6064,7 +6064,7 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 <view name="vw_perfil_permissao">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1120" y="1603"/>
+	<position x="1120" y="1600"/>
 	<reference>
 		<expression><![CDATA[SELECT vw_perfil_funcionalidade.id_perfil,
 vw_perfil_funcionalidade.no_perfil,
@@ -6135,17 +6135,23 @@ A = Ativo
 		<type name="timestamp" length="0"/>
 		<comment><![CDATA[Data de modificaçao do registro]]></comment>
 	</column>
+	<column name="id_usuario" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="id_backup" not-null="true">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
 	</column>
+	<column name="no_backup" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
 	<column name="dt_inicio" not-null="true">
 		<type name="timestamp" length="0"/>
 	</column>
-	<column name="dt_fim" not-null="true">
+	<column name="dt_conclusao" not-null="true">
 		<type name="timestamp" length="0"/>
 	</column>
-	<column name="tm_duracao" not-null="true">
+	<column name="tp_duracao" not-null="true">
 		<type name="time" length="0"/>
 	</column>
 	<column name="ds_tamanho" not-null="true">
@@ -6214,6 +6220,12 @@ A = Ativo
 	<columns names="id_perfil" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="fk_tb_backup_tb_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_usuario" table="public.tb_backup">
+	<columns names="id_usuario" ref-type="src-columns"/>
+	<columns names="id_usuario" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="fk_tb_documento_ts_tipo_documento" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="sistema.ts_tipo_documento" table="public.tb_documento">
 	<columns names="id_tipo_documento" ref-type="src-columns"/>
@@ -6238,6 +6250,11 @@ A = Ativo
 
 <relationship name="rel_tb_documento_tb_usuario" type="relfk"
 	 src-table="public.tb_documento"
+	 dst-table="public.tb_usuario"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tb_backup_tb_usuario" type="relfk"
+	 src-table="public.tb_backup"
 	 dst-table="public.tb_usuario"
 	 src-required="false" dst-required="false"/>
 

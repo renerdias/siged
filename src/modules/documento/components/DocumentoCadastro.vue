@@ -32,7 +32,7 @@
       Redação
     </box>
     <box direction="column" expand>
-      <tiny-mce id="tinymce" v-model="documento.ds_documento" :plugins="'advlist autolink lists link image charmap hr anchor pagebreak searchreplace wordcount visualblocks visualchars code insertdatetime media nonbreaking save table contextmenu directionality template paste textcolor colorpicker textpattern imagetools codesample toc'"
+      <tiny-mce id="tinymce" v-model="documento.ds_redacao" :plugins="'advlist autolink lists link image charmap hr anchor pagebreak searchreplace wordcount visualblocks visualchars code insertdatetime media nonbreaking save table contextmenu directionality template paste textcolor colorpicker textpattern imagetools codesample toc'"
         :menubar="'edit insert view format table'" :toolbar="'undo redo | styleselect | fontselect fontsizeselect bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'"></tiny-mce>
     </box>
   </box>
@@ -85,7 +85,7 @@ module.exports = {
         dt_documento: '',
         dt_aprovacao: '',
         ds_ementa: '',
-        ds_documento: 'Redija aqui a sua documento.'
+        ds_redacao: 'Redija aqui a sua documento.'
       },
       bloquear: 'true',
       infobar: {
@@ -149,7 +149,7 @@ module.exports = {
         dt_documento: '',
         dt_aprovacao: '',
         ds_ementa: '',
-        ds_documento: 'Redija aqui a sua documento.'
+        ds_redacao: 'Redija aqui a sua documento.'
       };
     },
     exibirBarraErro(b, str) {

@@ -64,7 +64,7 @@ letter-spacing: 7px;">
       Resultado
       <i :class="['fa', {'fa-caret-up': !expandResult }, {'fa-caret-down': expandResult }]"></i>
     </button>
-    <box direction="row" expand :padding="[0]" style="background:#f1f1f1;">
+    <box direction="row" expand :padding="[0]">
       <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
           <tr class="w3-red">

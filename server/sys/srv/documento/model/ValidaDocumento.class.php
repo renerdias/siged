@@ -33,9 +33,10 @@ class ValidaDocumento {
         $validate->set('"Ementa da Documento Fonético"', TUtil::fonetizar($documento->ds_ementa), 'ds_ementa_fn')->is_string()->is_required();
         $validate->set('"Tipo de Documento"', $documento->id_tipo_documento, 'id_tipo_documento')->is_integer()->is_required();
         $validate->set('"Nº da Documento"', $documento->nu_documento, 'nu_documento')->is_integer()->is_required();
-        $validate->set('"Descrição da Documento"', $documento->ds_documento, 'ds_documento')->is_string()->is_required();
+        $validate->set('"Redação do Documento"', $documento->ds_redacao, 'ds_redacao')->is_string()->is_required();
+        $validate->set('"Redação do Documento Fonético"', TUtil::fonetizar($documento->ds_redacao), 'ds_redacao_fn')->is_string()->is_required();
         $validate->set('"Data da Documento"', $documento->dt_documento, 'dt_documento');
-        $validate->set('"Data de Aprovação"', $documento->dt_aprovacao, 'dt_aprovacao')->is_required();
+        $validate->set('"Data de Aprovação"', $documento->dt_aprovacao, 'dt_aprovacao');
         if ($validate->validate()) {
             $this->registro = $validate->get_fields();
             return true;

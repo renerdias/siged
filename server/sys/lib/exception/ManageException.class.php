@@ -60,7 +60,7 @@ Class ManageException
 	public function register()
 	{
 		set_error_handler(array($this,"catchMyErrors"));
-		// set_exception_handler(array($this, "catchMyErrors"));
+		set_exception_handler(array($this, "catchMyExceptions"));
 	}
 
 
@@ -114,7 +114,10 @@ Class ManageException
 
 
 
-
+	public function catchMyExceptions($exception)	{
+		//TODO: ManageException->catchMyExceptions
+		var_dump($exception);
+	}
 
 
 	public function catchMyErrors($errno, $errmsg, $filename, $linenum, $vars)
@@ -252,7 +255,7 @@ Class ManageException
     $mail->addAddress('renerdias@live.com', 'Rener Dias');
     #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=
     #Defina o título da mensagem
-    $mail->Subject = 'SIGED - Notificação';
+    $mail->Subject = utf8_decode('SIGED - Notificação');
     #Defina a mensagem a ser enviada
     $mail->msgHTML(utf8_decode($this->corpMsg));
 		#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=

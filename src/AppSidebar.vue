@@ -2,7 +2,7 @@
 <!-- Init AppSidebar -->
 <box direction="column" expand style="" class="sidebar width__xs-30">
   <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 50px;">
-    <img style="height: 30px" src="src/assets/img/pasta.svg" />
+    <img style="height: 30px" src="src/assets/img/archive.svg" />
     <router-link to="/">SiGed</router-link>
   </box>
   <sidebar-menu :datatree="datatree">
@@ -120,6 +120,7 @@ export default {
   max-width: 220px;
   background: #333;
 }
+
 
 
 

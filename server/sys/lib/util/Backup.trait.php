@@ -35,16 +35,27 @@ trait Backup {
       $DB = $conf['dbname'];
       $DBUser = $conf['user'];
       $DBPass = $conf['password'];
-      $filename = TUtil::time__is_now('Ymd-Hms');
+
+      $data_inicio = TUtil::time__is_now('d-m-Y H:i:s');
+      TUtil::time__start_exec();
+      $filename = "$DB-" . TUtil::time__is_now('Ymd-His') . ".r2bk";
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
       //TODO: Criar no config path para pg_dump para backup/restore
         $comand = "export PGPASSWORD=$DBPass && export PGUSER=$DBUser";
-        $comand .= " && /opt/PostgreSQL/9.6/bin/pg_dump --host $DBHost --port $DBPort -d $DB --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file '$DB-$filename.r2bk' > error.log";
+        $comand .= " && /opt/PostgreSQL/9.6/bin/pg_dump --host $DBHost --port $DBPort -d $DB --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file $filename > error.log";
         $comand .=" && unset PGPASSWORD=$DBPass && unset PGUSER=$DBUser";
         //Função do Php
         exec($comand, $saida, $retorno);
+        $timeEnd = TUtil::time__end_exec();
         if ($retorno == 0) {
-            return true;
+          $execucao['sucesso'] = true;
+          $execucao['nome'] = $filename;
+          $execucao['data_inicio'] = $data_inicio;
+          $execucao['data_conclusão'] = TUtil::time__is_now('d-m-Y H:i:s');
+          $execucao['tamanho'] = TUtil::byte_to_size(filesize($filename));
+          $execucao['duracao'] = $timeEnd;
+          return $execucao;
+            //return true;
         } else {
             return;
         }

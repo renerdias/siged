@@ -10,18 +10,27 @@
     <table class="w3-table w3-bordered w3-striped w3-hoverable">
       <thead>
         <tr class="w3-red">
-          <th>Nome</th>
-          <th>Data</th>
+          <th>Status</th>
+          <th>Data Inicio</th>
+          <th>Data Conclusão</th>
+          <th>Duração</th>
           <th>Tamanho</th>
-          <th>Ação</th>
+          <th>Responsável</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="_backup in __listaBackups">
-          <td>{{_backup.no_arquivo}}</td>
-          <td>{{_backup.dt_arquivo}}</td>
-          <td>{{_backup.tm_arquivo}}</td>
-          <td>{{ _backup.link }}</td>
+          <td class="icons">
+            <i class="fa" :class="[_backup.st_registro == 'A' ? 'fa-check-circle text__is-blue' : 'fa-close text__is-red']">
+                            </i>
+          </td>
+          <td>{{_backup.dt_inicio}}</td>
+          <td>{{_backup.dt_conclusao}}</td>
+          <td>{{_backup.tp_duracao}}</td>
+          <td>{{_backup.ds_tamanho}}</td>
+          <td>CPF: {{_backup.nu_cpf}} | {{_backup.no_usuario}}</td>
+          <td><a v-show="_backup.st_registro == 'A'" :href="_backup.link"><i class="fa fa-download"></i></a></td>
         </tr>
       </tbody>
     </table>
@@ -30,6 +39,9 @@
     <button @click="executar()" class="button button__is-red width__xs-40">
             <i class="fa fa-cog"></i> Executar
         </button>
+    <button class="button button__is-default width__xs-40">
+                <i class="fa fa-trash"></i> Limpar
+            </button>
   </box>
 </box>
 </template>
@@ -55,53 +67,7 @@ export default {
       infobar: {
         exibir: false
       },
-      showLoader: false,
-      backupList: [{
-          st_registro: 'A',
-          data: 'Data',
-          inicio: '16:00',
-          termino: '17:00',
-          duracao: '01:00',
-          tamanho: '30m',
-          detalhes: 'Realizado por: Rener Dias<br>Perfil: Detalhes'
-        },
-        {
-          st_registro: 'A',
-          data: 'Data',
-          inicio: '16:00',
-          termino: '17:00',
-          duração: '01:00',
-          tamanho: '30m',
-          detalhes: '<th>Detalhes</th>'
-        },
-        {
-          st_registro: 'A',
-          data: 'Data',
-          inicio: '16:00',
-          termino: '17:00',
-          duração: '01:00',
-          tamanho: '30m',
-          detalhes: '<th>Detalhes</th>'
-        },
-        {
-          st_registro: 'A',
-          data: 'Data',
-          inicio: '16:00',
-          termino: '17:00',
-          duração: '01:00',
-          tamanho: '30m',
-          detalhes: '<th>Detalhes</th>'
-        },
-        {
-          st_registro: 'A',
-          data: 'Data',
-          inicio: '16:00',
-          termino: '17:00',
-          duração: '01:00',
-          tamanho: '30m',
-          detalhes: '<th>Detalhes</th>'
-        }
-      ]
+      showLoader: false
     }
   },
   mounted() { //Quando usar keep alive//mounted() {

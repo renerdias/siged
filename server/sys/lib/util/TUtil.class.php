@@ -33,5 +33,5 @@ final class TUtil {
   use validators\Phone;
 
   #Constantes devem ficar aqui, pois trait's não aceitam constantes
-  const FORMAT_DEFAULT = 'dmY Hms';
+  const FORMAT_DEFAULT = 'dmY His';
 }

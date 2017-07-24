@@ -1,6 +1,6 @@
 <template>
 <box direction="row" :padding="[20]" center>
-  <img src="src/assets/img/pagina-construcao.svg"></img>
+  <img src="src/assets/img/archive.svg"></img>
 </box>
 </template>
 
