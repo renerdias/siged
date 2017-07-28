@@ -2,14 +2,25 @@
 <!-- Init AppSidebar -->
 <box direction="column" expand style="" class="sidebar width__xs-30">
   <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 50px;">
-    <img style="height: 30px" src="src/assets/img/archive.svg" />
+    <img style="height: 30px; padding: 0 20px;" src="src/assets/img/archive.svg" />
     <router-link to="/">SiGed</router-link>
   </box>
   <sidebar-menu :datatree="datatree">
   </sidebar-menu>
-  <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 30px;">
-    <i class="fa fa-user-o"></i>
-    <router-link to="/logout"><i class="fa fa-power-off"></i></router-link>
+  <box direction="column" class="text__is-white dev" center style="border-top: 1px solid #222;background: #2a2a2a;">
+    <img style="height: 30px; padding: 0 20px; margin: 10px 0px;" src="src/assets/img/rnr.svg" />
+    <br />
+    <ul>
+      <li>
+        Rener Dias
+      </li>
+      <li>
+        <i class="fa fa-envelope" style="margin-right: 10px;"></i>renerdias@msn.com
+      </li>
+      <li>
+        <i class="fa fa-phone" style="margin-right: 10px;"></i> (33) 98838-4122
+      </li>
+    </ul>
   </box>
 </box>
 <!-- End AppSidebar -->
@@ -87,6 +98,18 @@ export default {
               link: '#/configuracao'
             }
           ]
+        },
+        {
+          name: 'Meu Perfil',
+          class: 'text__is-blue__on-hover',
+          icon: 'fa fa-id-card-o',
+          link: '#/perfil'
+        },
+        {
+          name: 'Sair',
+          class: 'text__is-red__on-hover',
+          icon: 'fa fa-power-off',
+          link: '#/logout'
         }
       ]
     }
@@ -120,6 +143,35 @@ export default {
   max-width: 220px;
   background: #333;
 }
+
+.dev ul {
+  transition: max-height 1s;
+  max-height: 0;
+}
+
+.dev:hover ul {
+  max-height: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
