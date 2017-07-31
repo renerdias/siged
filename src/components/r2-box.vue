@@ -51,7 +51,7 @@ export default {
       return (this.vExpand ? ' r2-vexpand ' : '') + (this.hExpand ? ' r2-hexpand ' : '') + (this.expand ? ' box__is-expand ' : '');
     },
     centered: function() {
-      return (this.center ? ' box__is-center ' : '') + (this.rowCenter ? ' r2-row-center ' : '') + (this.columnCenter ? ' r2-column-center ' : '');
+      return (this.center ? ' box__is-center ' : '') + (this.rowCenter ? ' box__is-row-center ' : '') + (this.columnCenter ? ' box__is-column-center ' : '');
     },
     directions: function() {
       return (this.direction == 'row' || this.direction == null ? ' box__is-row ' : ' box__is-column ') + (this.reverse ? (this.direction == 'row' ? ' box__is-row-reverse ' : ' box__is-column-reverse ') : '');;

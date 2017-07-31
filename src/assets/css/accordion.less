@@ -1,0 +1,128 @@
+@import "colors.less";
+
+.accordion {
+  .accordion__is-item {
+    .accordion__is-item__icon {}
+
+    .accordion__is-submenu__icon {}
+
+    .accordion__is-submenu {}
+  }
+}
+/*******************************************************************************
+CSS3 Accordion Menu
+*******************************************************************************/
+/* Reset */
+.accordion,
+.accordion a,
+.accordion li,
+.accordion ul {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.accordion li {
+  list-style: none;
+}
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+/* Layout */
+.accordion li > a {
+  display: block;
+  position: relative;
+  min-width: 110px;
+  padding: 5px 10px;
+  height: 40px;
+  font: bold 12px/32px Arial, sans-serif;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+}
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+/* SubMenu Funcionalidade */
+.accordion li > .sub-menu {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.2s ease-in-out;
+  -moz-transition: max-height 0.2s ease-in-out;
+  -o-transition: max-height 0.2s ease-in-out;
+  -ms-transition: max-height 0.2s ease-in-out;
+  transition: max-height 0.2s ease-in-out;
+}
+
+.accordion li > .sub-menu.sub-menu-open {
+  max-height: 2000px !important;
+}
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+/* Style */
+.accordion > li > a {
+  color: #fdfdfd;
+  background: #333;
+  background: -moz-linear-gradient(top, #333 0%, #4b4d51 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333), color-stop(100%, #4b4d51));
+  background: -webkit-linear-gradient(top, #333 0%, #4b4d51 100%);
+  background: -o-linear-gradient(top, #333 0%, #4b4d51 100%);
+  background: -ms-linear-gradient(top, #333 0%, #4b4d51 100%);
+  background: linear-gradient(top, #333 0%, #4b4d51 100%);
+}
+/* 1ª Nível Hover */
+.accordion > li:hover > a {
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, .2);
+  /*background: url(../img/active.png) repeat-x;*/
+  /*
+  color: #3e5706;
+  background: #a5cd4e;
+  background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a5cd4e), color-stop(100%, #6b8f1a));
+  background: -webkit-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+  background: -o-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+  background: -ms-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+  background: linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+  */
+  color: #4c0905;
+  background: #c4170c;
+  background: -moz-linear-gradient(top, #c4170c 0%, #7c0f08 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c4170c), color-stop(100%, #7c0f08));
+  background: -webkit-linear-gradient(top, #c4170c 0%, #7c0f08 100%);
+  background: -o-linear-gradient(top, #c4170c 0%, #7c0f08 100%);
+  background: -ms-linear-gradient(top, #c4170c 0%, #7c0f08 100%);
+  background: linear-gradient(top, #c4170c 0%, #7c0f08 100%);
+}
+/* Sub Menu Style */
+ul.sub-menu {
+  background: #dddddd !important;
+}
+
+ul.sub-menu .sub-menu {
+  background: #f2f2f2 !important;
+}
+
+.sub-menu li:hover > a {
+  color: #c4170c;
+}
+
+.sub-menu .sub-menu li:hover > a {
+  border-left: 4px solid #c4170c;
+}
+
+.sub-menu li a {
+  color: #797979;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
+  /*background: #e5e5e5;*/
+  /*background: #d0d0d0;*/
+  border-bottom: 1px solid #c9c9c9;
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sub-menu > li:hover > a {
+  /*background: #efefef;*/
+}
+
+.sub-menu li:last-child a {
+  border: none;
+}

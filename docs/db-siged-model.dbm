@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.0-beta" last-position="829,450" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="355,0" last-zoom="1"
 	 default-owner="postgres">
 <database name="siged" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
 	<comment><![CDATA[Sistema Integrado de Gestao Eletronica de Documentos]]></comment>
@@ -6200,7 +6200,10 @@ A = Ativo
 	<column name="ds_ementa_fn" not-null="true">
 		<type name="text" length="0"/>
 	</column>
-	<column name="ds_documento" not-null="true">
+	<column name="ds_redacao" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="ds_redacao_fn" not-null="true">
 		<type name="text" length="0"/>
 	</column>
 	<column name="dt_documento">

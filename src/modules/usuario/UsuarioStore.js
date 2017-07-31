@@ -147,6 +147,13 @@ const getters = {
   },
   /**
    *
+   * @returns {String}
+   */
+  usuarioAutenticadoPerfil() {
+    return state.autenticacao.perfil.nome
+  },
+  /**
+   *
    * @returns {state.usuario|newUser}
    */
   usuario() {

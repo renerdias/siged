@@ -56,7 +56,7 @@ letter-spacing: 7px;">
     </box>
     <box v-if="__permissao.documento.inserir" direction="row" reverse :padding="[5]">
       <button @click.prevent.stop="$router.push('/documento/novo')" class="button button__is-green small"><i class="fa fa-file-text" style=""></i>Novo</button>
-      <button @click.prevent.stop="$router.push('/documento/resultado')" class="button button__is-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
+      <button @click.prevent.stop="$router.push('/documento')" class="button button__is-blue small"><i class="fa fa-search" style=""></i>Pesquisar</button>
     </box>
   </box>
   <box direction="column" expand>

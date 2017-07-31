@@ -36,7 +36,23 @@
       </box>
     </form>
   </box>
+  </box>
   <modalloader v-if="showLoader"></modalloader>
+  <box direction="column" class="text__is-white dev" center style="position: fixed; bottom:0; width: 100%;left:0;border-top: 1px solid #222;background: #2a2a2a;">
+    <img style="height: 30px; padding: 0 20px; margin: 10px 0px;" src="src/assets/img/rnr.svg" />
+    <br />
+    <ul>
+      <li>
+        Rener Dias
+      </li>
+      <li>
+        <i class="fa fa-envelope" style="margin-right: 10px;"></i>renerdias@msn.com
+      </li>
+      <li>
+        <i class="fa fa-phone" style="margin-right: 10px;"></i> (33) 98838-4122
+      </li>
+    </ul>
+  </box>
 </modal>
 </template>
 
@@ -133,3 +149,13 @@ export default {
   }
 };
 </script>
+<style>
+.dev ul {
+  transition: max-height 1s;
+  max-height: 0;
+}
+
+.dev:hover ul {
+  max-height: 500px;
+}
+</style>

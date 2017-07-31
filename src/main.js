@@ -83,11 +83,6 @@ const router = new VueRouter({
           beforeEnter: requererAutenticacao
         },
         {
-          path: 'resultado',
-          component: require('./modules/documento/components/DocumentoResultado.vue'),
-          beforeEnter: requererAutenticacao
-        },
-        {
           path: ':id/:acao(editar|visualizar)',
           component: require('./modules/documento/components/DocumentoCadastro.vue'),
           beforeEnter: requererAutenticacao

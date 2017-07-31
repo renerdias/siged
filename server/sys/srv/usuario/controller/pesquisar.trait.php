@@ -49,7 +49,9 @@ public static function autenticar($nome, $senha) {
             'token' => md5($nome . $senha),
             'perfil' => array (
                 'id' => $resultado[0]->id_perfil,
-                'nome' => $resultado[0]->no_perfil
+                //'nome' => $resultado[0]->no_perfil
+                //TODO: Alterar select para fazer join com a tabela perfil para trazer nome do perfil
+                'nome' => 'Administrador Geral'
             ),
             'permissao' => $permissoesPerfilAgrupadas
         );

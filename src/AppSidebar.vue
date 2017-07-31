@@ -1,19 +1,28 @@
 <template>
 <!-- Init AppSidebar -->
 <box direction="column" expand style="" class="sidebar width__xs-30">
-  <box direction="row" center :padding="[0,20]" class="title text__is-white" style="height: 50px;">
-    <img style="height: 30px; padding: 0 20px;" src="src/assets/img/archive.svg" />
-    <router-link to="/">SiGed</router-link>
+  <box direction="column" class="bg__is-red">
+    <box direction="row" center class="title text__is-white" style="height: 50px;">
+      <img style="height: 30px; padding: 0 20px;" src="src/assets/img/archive.svg" />
+      <router-link to="/" style="font-weight: bold;font-size: 25px;">SiGed</router-link>
+    </box>
+    <box direction="row" column-center class="text__is-white" style="height: 50px;">
+      <box center :margin="[0,6,0,10]" class="bg__is-white text__is-red" style="width: 35px;height: 35px;border-radius: 50%;font-size: 18px;">
+        <i class="fa fa-user-o"></i>
+      </box>
+      <box direction="column" expand row-center style="font: bold 1.4rem/2rem Arial,sans-serif">
+        <span>{{usuarioAutenticado}}</span>
+        <span style="font-size: 1.2rem">{{usuarioAutenticadoPerfil}}</span>
+      </box>
+      <router-link to="/perfil" style="margin: 0 10px;font-size: 20px; color:#4c0905" class="text__is-white__on-hover"> <span><i class="fa fa-cog"></i></span></router-link>
+    </box>
   </box>
   <sidebar-menu :datatree="datatree">
   </sidebar-menu>
   <box direction="column" class="text__is-white dev" center style="border-top: 1px solid #222;background: #2a2a2a;">
-    <img style="height: 30px; padding: 0 20px; margin: 10px 0px;" src="src/assets/img/rnr.svg" />
+    <img style="height: 20px; padding: 0 20px; margin: 10px 0px;" src="src/assets/img/rnr.svg" />
     <br />
     <ul>
-      <li>
-        Rener Dias
-      </li>
       <li>
         <i class="fa fa-envelope" style="margin-right: 10px;"></i>renerdias@msn.com
       </li>
@@ -38,17 +47,33 @@ export default {
     SidebarMenu
   },
   computed: {
-    ...mapGetters([
-      'usuarioAutenticado'
+    ...mapGetters('usuario', [
+      'usuarioAutenticado',
+      'usuarioAutenticadoPerfil'
     ])
   },
   data: function() {
     return {
       datatree: [{
-          name: 'Documento',
+          name: 'Cadastro',
           class: '',
           icon: 'fa fa-file-text',
-          link: '#/documento/'
+          children: [{
+            name: 'Documento',
+            class: '',
+            icon: 'fa fa-file-text',
+            link: '#/documento/'
+          }, {
+            name: 'Setor',
+            class: '',
+            icon: 'fa fa-sitemap',
+            link: '#/documento/'
+          }, {
+            name: 'Remetente',
+            class: '',
+            icon: 'fa fa-envelope',
+            link: '#/documento/'
+          }]
           //title: 'fa fa-user'
           //icon: 'fa fa-user'
           //action: 'fa fa-user'
@@ -62,6 +87,17 @@ export default {
   icon: { type: String, default: 'fa fa-link' },
   isExact: { type: Boolean, default: fal
   */
+        },
+        {
+          name: 'Arquivos',
+          class: '',
+          icon: 'fa fa-folder-open',
+          children: [{
+            name: 'Convênio',
+            class: '',
+            icon: 'fa fa-handshake-o',
+            link: '#/backup'
+          }]
         },
         {
           name: 'Ferramentas',
@@ -95,19 +131,25 @@ export default {
               name: 'Configurações',
               class: '',
               icon: 'fa fa-cog',
-              link: '#/configuracao'
+              children: [{
+                  name: 'Tipo de Documento',
+                  class: '',
+                  icon: 'fa fa-file-o',
+                  link: '#/perfil'
+                },
+                {
+                  name: 'Modelo',
+                  class: '',
+                  icon: 'fa fa-file-text',
+                  link: '#/usuario'
+                }
+              ]
             }
           ]
         },
         {
-          name: 'Meu Perfil',
-          class: 'text__is-blue__on-hover',
-          icon: 'fa fa-id-card-o',
-          link: '#/perfil'
-        },
-        {
           name: 'Sair',
-          class: 'text__is-red__on-hover',
+          class: '',
           icon: 'fa fa-power-off',
           link: '#/logout'
         }
@@ -169,66 +211,6 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Demo Navigation */
 
 .sidebar .title {
@@ -240,34 +222,5 @@ export default {
   color: #eee;
   border-bottom: 1px solid #222;
   background: #2a2a2a;
-}
-
-.nav li a {
-  position: relative;
-  display: block;
-  padding: 15px 15px 15px 25px;
-  font-size: 14px;
-  color: #eee;
-  border-bottom: 1px solid #222;
-  cursor: pointer;
-}
-
-.nav li a i {
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-.nav li a:hover {
-  background: #444;
-  box-shadow: inset 5px 0 0 rgba(18, 114, 224, 0.77), inset 6px 0 0 #222;
-}
-
-.nav li a:hover i {
-  color: rgba(18, 114, 224, 0.77);
-}
-
-.nav li a.active {
-  box-shadow: inset 5px 0 0 rgba(18, 114, 224, 0.77), inset 6px 0 0 #222;
-  background: #444;
 }
 </style>
