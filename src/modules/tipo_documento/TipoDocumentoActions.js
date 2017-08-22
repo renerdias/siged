@@ -14,7 +14,7 @@ export const _limpar = ({
 /**
  * Obtém todos os tipos_normas
  */
-export const _todosTiposDocumentos = ({
+export const _obterTodosTiposDocumentos = ({
   commit,
   dispatch
 }) => {

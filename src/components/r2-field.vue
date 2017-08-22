@@ -4,7 +4,16 @@
   <the-mask :mask="mask" :tokens="tokens" v-model="value" :placeholder="placeholder" :masked="masked" type="text" :class="{'border__is-red': hasError}"></the-mask>
   <span v-show="hasError" class="text__is-red">{{ msgError }}</span>
 </box>
-
+<box v-else-if="type == 'toggle-bar'" :direction="direction" :padding="padding" :margin="margin" :expand="expand" :reverse="reverse">
+  <label>{{label}}</label>
+  <box direction="row" center class="width__xs-100 button-bar" :class="[size, themed]">
+    <div v-for="option in options" class="button-bar__item box">
+      <input :value="getOptionValue(option)" type="radio" v-model="value" @input="$emit('input',$event.target.value)" :name="name" :required="required" :readonly="readonly" :disabled="disabled" :class="{'border__is-red': hasError}">
+      <button class="button-bar__button">{{ getOptionLabel(option) }}</button>
+    </div>
+  </box>
+  <span v-show="hasError" class="text__is-red">{{ msgError }}</span>
+</box>
 <box v-else-if="type == 'select'" :direction="direction" :padding="padding" :margin="margin" :expand="expand" :reverse="reverse">
   <label>{{label}}</label>
   <select ref="sel" v-model="value" @input="$emit('input',$event.target.value)" :name="name" class="secret" :multiple="multiple" :required="required" :readonly="readonly" :disabled="disabled" :class="{'border__is-red': hasError}">
@@ -21,7 +30,7 @@
 </box>
 <box v-else :direction="direction" :padding="padding" :margin="margin" :expand="expand" :reverse="reverse">
   <label>{{label}}</label>
-  <input v-model="value" @input="$emit('input',$event.target.value)" :class="{'border__is-red': hasError}" :name="name" :disabled="disabled" :readonly="readonly" :required="required" type="text" :placeholder="placeholder" />
+  <input v-model="value" @input="$emit('input',$event.target.value)" :class="[{'border__is-red': hasError}, size]" :name="name" :disabled="disabled" :readonly="readonly" :required="required" type="text" :placeholder="placeholder" />
   <span v-show="hasError" class="text__is-red">{{ msgError }}</span>
 </box>
 </template>
@@ -141,6 +150,14 @@ export default {
       type: Boolean,
       default: null
     },
+    size: {
+      type: String,
+      default: ''
+    },
+    theme: {
+      type: String,
+      default: ''
+    },
     //Controle
 
     label: String,
@@ -193,6 +210,9 @@ export default {
       return this.value
     }
     */
+    themed() {
+      return 'button-bar__is-' + this.theme
+    }
   },
   watch: {
     /**

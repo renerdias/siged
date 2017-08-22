@@ -1,34 +1,371 @@
 <template>
-<!-- Init Box -->
-<div class="box" :class="classes" :style="css">
+<!--
+BOX Props:
+Direction [
+  row,
+  row-reverse,
+  column,
+  column-reverse,
+  sm-row,
+  sm-row-reverse,
+  sm-column,
+  sm-column-reverse,
+  md-row,
+  md-row-reverse,
+  md-column,
+  md-column-reverse,
+  lg-row,
+  lg-row-reverse,
+  lg-column,
+  lg-column-reverse,
+  xl-row,
+  xl-row-reverse,
+  xl-column,
+  xl-column-reverse
+],
+Justify-Content[
+    start,
+    end,
+    center,
+    between,
+    around,
+    sm-start,
+    sm-end,
+    sm-center,
+    sm-between,
+    sm-around,
+    md-start,
+    md-end,
+    md-center,
+    md-between,
+    md-around,
+    lg-start,
+    lg-end,
+    lg-center,
+    lg-between,
+    lg-around,
+    xl-start,
+    xl-end,
+    xl-center,
+    xl-between,
+    xl-around
+],
+align-items[
+    start,
+    end,
+    center,
+    baseline,
+    stretch,
+    sm-start,
+    sm-end,
+    sm-center,
+    sm-baseline,
+    sm-stretch,
+    md-start,
+    md-end,
+    md-center,
+    md-baseline,
+    md-stretch,
+    lg-start,
+    lg-end,
+    lg-center,
+    lg-baseline,
+    lg-stretch,
+    xl-start,
+    xl-end,
+    xl-center,
+    xl-baseline,
+    xl-stretch
+],
+align-self[
+    start,
+    end,
+    center,
+    baseline,
+    stretch,
+    sm-start,
+    sm-end,
+    sm-center,
+    sm-baseline,
+    sm-stretch,
+    md-start,
+    md-end,
+    md-center,
+    md-baseline,
+    md-stretch,
+    lg-start,
+    lg-end,
+    lg-center,
+    lg-baseline,
+    lg-stretch,
+    xl-start,
+    xl-end,
+    xl-center,
+    xl-baseline,
+    xl-stretch
+],
+align-content[
+    start,
+    end,
+    center,
+    around,
+    stretch,
+    sm-start,
+    sm-end,
+    sm-center,
+    sm-around,
+    sm-stretch,
+    md-start,
+    md-end,
+    md-center,
+    md-around,
+    md-stretch,
+    lg-start,
+    lg-end,
+    lg-center,
+    lg-around,
+    lg-stretch,
+    xl-start,
+    xl-end,
+    xl-center,
+    xl-around,
+    xl-stretch
+],
+wrap[
+    nowrap,
+    wrap,
+    wrap-reverse,
+    sm-nowrap,
+    sm-wrap,
+    sm-wrap-reverse,
+    md-nowrap,
+    md-wrap,
+    md-wrap-reverse,
+    lg-nowrap,
+    lg-wrap,
+    lg-wrap-reverse,
+    xl-nowrap,
+    xl-wrap,
+    xl-wrap-reverse
+]
+order[
+    first,
+    last,
+    unordered,
+    sm-first,
+    sm-last,
+    sm-unordered,
+    md-first,
+    md-last,
+    md-unordered,
+    lg-first,
+    lg-last,
+    lg-unordered,
+    xl-first,
+    xl-last,
+    xl-unordered,
+],
+rounded[
+rounded
+rounded-top
+rounded-right
+rounded-bottom
+rounded-left
+rounded-circle
+rounded-0
+],
+border[
+  -0,
+  top-0,
+  right-0,
+  bottom-0,
+  left-0,
+],
+border-color[
+  dark,
+  muted,
+  primary,
+  success,
+  info,
+  warning,
+  danger,
+  white
+],
+text[
+/*text-colors*/
+text-muted
+text-primary
+text-success
+text-info
+text-warning
+text-danger
+/*text-alignment*/
+text-justify
+text-left
+text-center
+text-right
+text-sm-left
+text-md-left
+text-lg-left
+text-xl-left
+text-sm-right
+text-md-right
+text-lg-right
+text-xl-right
+text-sm-center
+text-md-center
+text-lg-center
+text-xl-center
+/*text-trasnform*/
+text-lowercase
+text-uppercase
+text-capitalize
+]
+-->
+<!-- box start -->
+<div class="d-flex" :class="classes" :style="css">
   <slot></slot>
-  <!-- End Box -->
 </div>
+<!-- box end -->
 </template>
 
 <script>
 export default {
   name: 'r2-box',
   props: {
+    /*
+    display:{
+        .d - flex
+        .d - inline - flex
+        .d - sm - flex
+        .d - sm - inline - flex
+        .d - md - flex
+        .d - md - inline - flex
+        .d - lg - flex
+        .d - lg - inline - flex
+        .d - xl - flex
+        .d - xl - inline - flex
+    }
+    */
+    /**
+     *
+     *
+     *
+     */
+
     direction: {
-      type: String,
-      default: 'row'
+      type: [String, Array]
     },
-    // multiple possible types
-    radius: [String, Array],
-    margin: [String, Array],
-    padding: [Array, String],
-    card: {
-      Number,
-      default: 0
+    /**
+     *
+     *
+     *
+     */
+    justifyContent: {
+      type: [String, Array]
     },
-    vExpand: Boolean,
-    hExpand: Boolean,
+    /**
+     *
+     *
+     *
+     */
+    alignItems: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    alignSelf: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    alignContent: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    wrap: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
     expand: Boolean,
-    rowCenter: Boolean,
-    columnCenter: Boolean,
-    reverse: Boolean,
-    center: Boolean
+    /**
+     *
+     *
+     *
+     */
+    order: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    margin: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    padding: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    rounded: {
+      type: [Boolean, String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    border: {
+      type: [String, Array]
+    },
+    /**
+     *
+     *
+     *
+     */
+    bordered: {
+      type: Boolean
+    },
+    /**
+     *
+     *
+     *
+     */
+    borderColor: {
+      type: String
+    },
+    /**
+     *
+     *
+     *
+     */
+    text: {
+      type: [String, Array]
+    },
   },
   data: function() {
     return {
@@ -37,88 +374,27 @@ export default {
   },
   computed: {
     css: function() {
-      return (this.radiusCSS() + this.marginCSS() + this.paddingCSS());
+      //
     },
     classes: function() {
-      return this.directions() + this.cards() + this.expanded() + this.centered();
+      return this._class(' flex-', this.direction) +
+        this._class(' justify-content-', this.justifyContent) +
+        this._class(' align-items-', this.alignItems) +
+        this._class(' align-self-', this.alignSelf) +
+        this._class(' align-content-', this.alignContent) +
+        this._class(' flex-', this.wrap) +
+        this._class(' flex-', this.order) +
+        (this.expand ? ' flex-expand ' : '') +
+        this._class(' m', this.margin) +
+        this._class(' p', this.padding) +
+        (this.rounded == false ? ' rounded' : this._class(' rounded-', this.rounded)) +
+        this._class(' border-', this.border) +
+        (this.bordered ? ' bordered ' : '') +
+        this._class(' border-color-', this.borderColor) +
+        this._class(' text-', this.text)
     }
   },
   methods: {
-    coerce: function(val) {
-      return (typeof val === 'string' ? (val === 'false' || val === 'null' || val === 'undefined' ? false : val === 'true' ? true : val) : val);
-    },
-    expanded: function() {
-      return (this.vExpand ? ' r2-vexpand ' : '') + (this.hExpand ? ' r2-hexpand ' : '') + (this.expand ? ' box__is-expand ' : '');
-    },
-    centered: function() {
-      return (this.center ? ' box__is-center ' : '') + (this.rowCenter ? ' box__is-row-center ' : '') + (this.columnCenter ? ' box__is-column-center ' : '');
-    },
-    directions: function() {
-      return (this.direction == 'row' || this.direction == null ? ' box__is-row ' : ' box__is-column ') + (this.reverse ? (this.direction == 'row' ? ' box__is-row-reverse ' : ' box__is-column-reverse ') : '');;
-    },
-    cards: function() {
-      return this.card > 0 ? ' card-' + this.card : '';
-    },
-    radiusCSS: function() {
-      if (!this.radius) {
-        return '';
-      } else {
-        if (this.isArray(this.radius)) {
-          let quantidade = this.radius.length;
-          let _radius = '';
-          if (quantidade > 0 && quantidade < 5) {
-            for (var key in this.radius) {
-              if (this.radius.hasOwnProperty(key)) {
-                _radius = _radius + ' ' + this.radius[key] + 'px';
-              }
-            }
-            return ' border-radius:' + _radius + ';';
-          }
-        } else if (typeof this.radius == 'string') {
-          this.radiusClass = 'w3-round-' + this.radius;
-        }
-      }
-    },
-    marginCSS: function() {
-      if (!this.margin) {
-        return '';
-      } else {
-        if (this.isArray(this.margin)) {
-          let quantidade = this.margin.length;
-          let _margin = '';
-          if (quantidade > 0 && quantidade < 5) {
-            for (var key in this.margin) {
-              if (this.margin.hasOwnProperty(key)) {
-                _margin = _margin + this.margin[key] + 'px ';
-              }
-            }
-            return ' margin:' + _margin + ';';
-          }
-        } else if (typeof this.margin == 'string') {
-          this.marginClass = 'w3-margin-' + this.margin;
-        }
-      }
-    },
-    paddingCSS: function() {
-      if (!this.padding) {
-        return '';
-      } else {
-        if (this.isArray(this.padding)) {
-          let quantidade = this.padding.length;
-          let _padding = '';
-          if (quantidade > 0 && quantidade < 5) {
-            for (var key in this.padding) {
-              if (this.padding.hasOwnProperty(key)) {
-                _padding = _padding + this.padding[key] + 'px ';
-              }
-            }
-            return ' padding:' + _padding + ';';
-          }
-        } else if (typeof this.padding == 'string') {
-          this.paddingClass = 'w3-padding-' + this.padding;
-        }
-      }
-    },
     isArray: function(obj) {
       //Verifica se e uma array
       if (Object.prototype.toString.call(obj) === '[object Array]') {
@@ -126,37 +402,24 @@ export default {
       } else {
         return;
       }
+    },
+    _class: function(subclass, value) {
+      if (!value) {
+        return '';
+      } else {
+        if (this.isArray(value)) {
+          let result = '';
+          for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+              result = result + subclass + value[key] + ' ';
+            }
+          }
+          return result;
+        } else if (typeof value == 'string') {
+          return subclass + value;
+        }
+      }
     }
   }
 }
 </script>
-
-<style>
-/*
-.r2-border {//Adds borders (top, right, bottom, left) to an element
-
-}
-.r2-border-top {//Adds a top border to an element
-}
-.r2-border-right {//Adds a right border to an element
-}
-.r2-border-bottom {//Adds a bottom border to an element
-}
-.r2-border-left {//Adds a left border to an element
-}
-.r2-border-0 {//Removes all borders
-}
-.r2-border-color {//Displays the border in a specified color (like red, blue, etc)
-}
-.r2-hover-border-color {//Adds a hoverable border color
-}
-.r2-bottombar {//Adds a thick bottom border to an element
-}
-.r2-leftbar {//Adds a thick left border to an element
-}
-.r2-rightbar {//Adds a thick right border to an element
-}
-.r2-topbar{
-}
-*/
-</style>

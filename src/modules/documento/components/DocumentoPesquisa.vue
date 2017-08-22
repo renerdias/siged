@@ -73,7 +73,7 @@ letter-spacing: 7px;">
             <th>Documento</th>
             <th style="width:130px;">Data Documento</th>
             <th style="width:150px;">Status</th>
-            <th style="width:100px;" class="text__is-center">Ação</th>
+            <th style="width:150px;" class="text__is-center">Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -96,7 +96,8 @@ letter-spacing: 7px;">
             <td class="buttons">
               <a><i class="fa fa-file-pdf-o text__is-red__on-hover"></i></a>
               <a v-if="__permissao.documento.visualizar" @click.prevent="$router.push('/documento/'+ _documento.id_documento +'/visualizar')"><i class="fa fa-eye"></i></a>
-              <a v-if="__permissao.documento.editar" @click.prevent="$router.push('/documento/'+ _documento.id_documento +'/editar')"><i class="fa fa-edit"></i></a>
+              <a v-if="__permissao.documento.editar" @click.prevent="$router.push('/documento/'+ _documento.id_documento +'/editar')"><i class="fa fa-pencil"></i></a>
+              <a v-if="__permissao.documento.editar" @click.prevent="$router.push('/documento/'+ _documento.id_documento +'/editar')"><i class="fa fa-bullhorn"></i></a>
             </td>
           </tr>
         </tbody>

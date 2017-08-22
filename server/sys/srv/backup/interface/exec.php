@@ -1,4 +1,7 @@
 <?php
+#Inclui definições
+require_once "../../../../../InitApp.php";
+
 # Inclui a dependência do arquivo de carregamento automático Autoloader
 require_once "../../../../../Autoloader.php";
 # Obtém uma instância de Autoloader
@@ -16,16 +19,18 @@ use root\server\sys\srv\backup\controller\BackupCtrl;
 use root\server\sys\srv\backup\model\ValidaBackup;
 use root\server\sys\lib\util\TUtil;
 
+use root\server\sys\lib\sendmail\SendMail;
 
 #Pega o caminho atual
 $caminho = getcwd();
-#Pega o caminho da pasta root do servidor web (www)
-$root = $_SERVER["DOCUMENT_ROOT"];
-//TODO: Resolver path
+
 #Muda o contexto para a pasta onde sera salvo o backup, a partir do root
-chdir($root . "/r2/siged/server/var/bkp");
+chdir(BASE_PATH . "/server/var/bkp");
 
 try {
+
+  $mail = new SendMail();
+  $mail->from('renerdias@live.com')->to('renerdias@live.com')->subject('teste da classe de email')->message('sucessuuuuuu')->send();
   //$retorno['tamanho'] = TUtil::byte_to_size(filesize($filename));
   $execucao = TUtil::backup_postgreSQL('siged');
   //if (TUtil::backup_postgreSQL('siged')) {
@@ -87,8 +92,6 @@ try {
           $resultado['mensagem'] = 'ERRO: Erro desconhecido! Entre em contato com o administrador do sistema.';
           $resultado['log'] = $ex->getTraceAsString();
         }
-
-
   } else {
       $resultado['execucao'] = 'erro';
       $resultado['mensagem'] = 'Falha ao realizar o backup!';

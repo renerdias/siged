@@ -42,7 +42,7 @@ export default {
       menubar: self.menubar,
       plugins: self.plugins, //wordcount -> plugin que mostra o contador de palavras
       //content_css: ['mycontent.css', 'mycontent2.css']  // includes both CSS files in header, ability to have CSS with `,` in URL
-      content_style: "table {border-collapse: collapse;}",
+      content_style: `table {border-collapse: collapse;}`,
       content_css: "src/assets/css/tinymce.css",
       font_size_style_values: "10px,12px,13px,14px,16px,18px,20px",
       style_formats: [{

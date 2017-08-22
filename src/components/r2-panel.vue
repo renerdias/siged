@@ -1,44 +1,50 @@
 <template>
-<div class="panel" :style="{ width:size}" :class="classes">
-    <div class="panel-header">
-        <span class="title">{{title}}</span>
-        <slot name="titlebutton"></slot>
-        <button class="titlebutton" @click="onclose"><span class="fa fa-close"></span></button>
-    </div>
-    <!-- End titlebar -->
-    <div class="panel-content">
-        <slot></slot>
-    </div>
-    <!-- End panel-content -->
+<!-- panel start -->
+<div class="card w-100" :style="{'max-width':size}" :class="classes">
+  <!-- panel-header start -->
+  <h6 class="card-header text-center">
+    {{title}}
+  </h6>
+  <!-- panel-header end -->
+  <!-- panel-content start -->
+  <div class="card-block">
+    <slot></slot>
+  </div>
+  <!-- panel-content end -->
+  <!-- panel-footer start -->
+  <div class="card-footer text-muted">
+    <slot name="footer"></slot>
+  </div>
+  <!-- panel-footer end -->
 </div>
-<!-- End panel -->
+<!-- panel end -->
 </template>
 <script>
 export default {
-    props: {
-        'title': {
-            default: 'Título'
-        },
-        'size': {
-            default: '800px'
-        },
-        card: {
-            Number,
-            default: 1
-        }
+  props: {
+    'title': {
+      default: 'Título'
     },
-    computed: {
-        classes: function() {
-            return this.cards();
-        }
+    'size': {
+      default: '800px'
     },
-    methods: {
-        onclose() {
-            this.$emit('close');
-        },
-        cards: function() {
-            return this.card > 0 ? ' card-' + this.card : '';
-        }
+    card: {
+      Number,
+      default: 0
     }
+  },
+  computed: {
+    classes: function() {
+      return this.cards();
+    }
+  },
+  methods: {
+    onclose() {
+      this.$emit('close');
+    },
+    cards: function() {
+      return this.card > 0 ? ' card-' + this.card : '';
+    }
+  }
 }
 </script>

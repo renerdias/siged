@@ -1,0 +1,76 @@
+
+// Basic looping in LESS
+.border-size(@index) when (@index >= 0) {
+  .border-@{index} {
+    /*bootstrap-plus*/
+    border:  ~"@{index}px" solid transparent;
+    border-style: solid;
+  }
+  .border-top-@{index} {
+    /*bootstrap-plus*/
+    border-top-width: ~"@{index}px" !important;
+        border-top-style: solid;
+  }
+  .border-right-@{index} {
+    /*bootstrap-plus*/
+    border-right-width:  ~"@{index}px" !important;
+        border-right-style: solid;
+  }
+  .border-bottom-@{index} {
+    /*bootstrap-plus*/
+    border-bottom-width:  ~"@{index}px" !important;
+        border-bottom-style: solid;
+  }
+  .border-left-@{index} {
+    /*bootstrap-plus*/
+    border-left-width:  ~"@{index}px" !important;
+        border-left-style: solid;
+  }
+  // next iteration
+  .border-size((@index - 1));
+}
+// Create grid for specific class
+.make-border-size() {
+  .border-size(@max-width-border);
+}
+
+/*
+@colors: green, red, blue;
+.for(@list, @code) {
+    & {
+        .loop(@i:1) when (@i =< length(@list)) {
+            @value: extract(@list, @i);
+
+            @code();
+
+            .loop(@i + 1);
+        }
+
+        .loop();
+    }
+}
+
+.for(@colors, {
+    .color-@{i} {
+        color: @value;
+    }
+});
+*/
+
+
+//TODO: flex-order retirar daqui
+// Basic looping in LESS
+.flex-order(@sufix,@index) when (@index >= 0) {
+  .flex-order-@{sufix}-@{index} {
+    /*bootstrap-plus*/
+    -webkit-order: @index;
+    -ms-flex-order: @index;
+    order: @index;
+}
+  // next iteration
+  .flex-order(@sufix,(@index - 1));
+}
+// Create grid for specific class
+.make-flex-order(@sufix) {
+  .flex-order(@sufix,@max-lenght-order);
+}

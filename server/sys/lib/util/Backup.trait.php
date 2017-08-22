@@ -22,12 +22,10 @@ trait Backup {
   * @param $config
   * @return {type} Boolean
   */
-//TODO Backup PostgreSQL->Remover configurações de conexão daqui
     public static function backup_postgreSQL($name) {
       //TODO: backup_postgreSQL deve sr revisto
       #Pega o caminho da pasta root do servidor web (www)
-      $root = $_SERVER["DOCUMENT_ROOT"];
-      $config = Config::load($root . '/r2/siged/server/sys/config/config.json');
+      $config = Config::load(BASE_PATH . '/server/sys/config/config.json');
       $conf = $config->get('connection.' . $name);
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
       $DBHost = $conf['server'];
@@ -35,14 +33,15 @@ trait Backup {
       $DB = $conf['dbname'];
       $DBUser = $conf['user'];
       $DBPass = $conf['password'];
+      //TODO: Criar no config path para pg_dump para backup/restore
+      $dump_path = '/opt/PostgreSQL/9.6/bin';
 
       $data_inicio = TUtil::time__is_now('d-m-Y H:i:s');
       TUtil::time__start_exec();
       $filename = "$DB-" . TUtil::time__is_now('Ymd-His') . ".r2bk";
       #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=
-      //TODO: Criar no config path para pg_dump para backup/restore
         $comand = "export PGPASSWORD=$DBPass && export PGUSER=$DBUser";
-        $comand .= " && /opt/PostgreSQL/9.6/bin/pg_dump --host $DBHost --port $DBPort -d $DB --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file $filename > error.log";
+        $comand .= " && $dump_path/pg_dump --host $DBHost --port $DBPort -d $DB --format custom --blobs --encoding UTF8 --no-privileges --no-tablespaces --no-unlogged-table-data --file $filename > error.log";
         $comand .=" && unset PGPASSWORD=$DBPass && unset PGUSER=$DBUser";
         //Função do Php
         exec($comand, $saida, $retorno);
@@ -55,35 +54,11 @@ trait Backup {
           $execucao['tamanho'] = TUtil::byte_to_size(filesize($filename));
           $execucao['duracao'] = $timeEnd;
           return $execucao;
-            //return true;
+          //return true;
         } else {
             return;
         }
-
-        /*
-          switch (strtoupper(PHP_OS)) {
-          case 'WINNT':
-
-
-          break;
-          case 'LINUX':
-          $pg_dump = '/opt/PostgreSQL/9.5/bin/pg_dump';
-          $user = 'postgres';
-          $password = 'postgres';
-          $database = 'siged';
-          $output = '/home/rener/Documentos';
-
-          break;
-          default:
-          break;
-          }
-          $return = '';
-          $cmd = "$pg_dump -U $user -W $password -Ft $database > $output";
-          exec($cmd, $output, $return);
-         */
-        //return new static();
     }
-
 }
 
 ?>

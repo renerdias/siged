@@ -41,6 +41,10 @@ trait Convert {
      */
     public static function array_to_object($data) {
         if (is_array($data) || is_object($data)){
+          #Usado \stdClass() para evitar o erro "Creating default object from empty value"
+          //$result = new \stdClass();
+            #Converte uma array vazia para object para evitar o erro "Creating default object from empty value"
+            $result = (object)array();//new \stdClass();
             foreach ($data as $key => $value) {
                 $result->$key =  self::array_to_object($value);
             }

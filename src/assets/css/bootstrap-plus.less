@@ -1,0 +1,118 @@
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+IMPORT's
+ */
+@import "mixins/_border.less";
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+VARIABLES
+ */
+/*Border*/
+@max-width-border: 5;
+/*Max number class order*/
+@max-lenght-order: 5;
+/*Colors*/
+@border-color-default: #e7e7e7;
+@border-color-dark: #222;
+@border-color-muted: #636c72;
+@border-color-primary: #0275d8;
+@border-color-success: #5cb85c;
+@border-color-info: #5bc0de;
+@border-color-warning: #f0ad4e;
+@border-color-danger: #d9534f;
+@border-color-white: #fff;
+
+// Telas muito pequenas / telefone
+@screen-xs: 544px; // Telas Pequenas / tablet
+@screen-sm: 768px; // Telas médias / desktop
+@screen-md: 992px; // Telas grandes / desktop
+@screen-lg: 1200px; //== Sistema de Padding
+/*
+  @screen-xs: 0;
+  @screen-sm: 576px;
+  @screen-md: 768px;
+  @screen-lg: 992px;
+  @screen-xl: 1200px;
+*/
+
+//== Gera grid telas muito pequenas
+.make-flex-order(xs);
+
+//== Gera grid telas pequenas
+@media (min-width: @screen-sm) {
+  .make-flex-order(sm);
+}
+
+//== Gera grid telas médias
+@media (min-width: @screen-md) {
+  .make-flex-order(md);
+}
+
+//== Gera grid telas grandes
+@media (min-width: @screen-lg) {
+  .make-flex-order(lg);
+}
+/*
+//== Gera grid telas grandes
+@media (max-width: @screen-xl) {
+  .make-flex-order(xl);
+}
+*/
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+CLASSES
+ */
+.flex-expand {
+  /*bootstrap-plus*/
+  flex: 1 1 auto;
+}
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+BORDER CLASSES
+ */
+ .bordered {
+   /*bootstrap-plus*/
+   border: 1px solid @border-color-default;
+ }
+/*
+Border-Width
+*/
+.make-border-size();
+
+/*
+Border-Colors
+*/
+ .border-color-default {
+   /*bootstrap-plus*/
+   border-color: @border-color-default;
+ }
+.border-color-dark {
+  /*bootstrap-plus*/
+  border-color: @border-color-dark !important;
+}
+.border-color-muted {
+  /*bootstrap-plus*/
+  border-color: @border-color-muted !important;
+}
+.border-color-primary {
+  /*bootstrap-plus*/
+  border-color: @border-color-primary !important;
+}
+.border-color-success {
+  /*bootstrap-plus*/
+  border-color: @border-color-success !important;
+}
+.border-color-info {
+  /*bootstrap-plus*/
+  border-color: @border-color-info !important;
+}
+.border-color-warning {
+  /*bootstrap-plus*/
+  border-color: @border-color-warning !important;
+}
+.border-color-danger {
+  /*bootstrap-plus*/
+  border-color: @border-color-danger !important;
+}
+.border-color-white {
+  /*bootstrap-plus*/
+  border-color: @border-color-white;
+}

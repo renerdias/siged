@@ -1,6 +1,6 @@
 <template>
 <!-- Init App -->
-<div id="app" class="box-app box__is-row">
+<div id="wrapper" class="wrapper" style="min-height: 100vh;">
   <app-sidebar></app-sidebar>
   <!-- Page content -->
   <box expand direction="column" style="overflow-x: hidden;overflow-y: auto; max-height: 100vh;">

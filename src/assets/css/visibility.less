@@ -1,0 +1,35 @@
+@import "_variables.less";
+@import "mixins/_visibility.less"; //
+// Visibility utilities
+//
+
+.visible {
+  .invisible(visible);
+}
+
+.invisible {
+  .invisible(hidden);
+}
+
+
+
+//.make-grid-columns();
+//.
+//== Gera grid telas muito pequenas
+.make-grid(xs);
+
+//== Gera grid telas pequenas
+@media (min-width: @screen-sm) {
+  .
+  .make-grid(sm);
+}
+
+//== Gera grid telas médias
+@media (min-width: @screen-md) {
+  .make-grid(md);
+}
+
+//== Gera grid telas grandes
+@media (min-width: @screen-lg) {
+  .make-grid(lg);
+}

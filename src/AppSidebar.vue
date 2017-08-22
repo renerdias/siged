@@ -19,7 +19,7 @@
   </box>
   <sidebar-menu :datatree="datatree">
   </sidebar-menu>
-  <box direction="column" class="text__is-white dev" center style="border-top: 1px solid #222;background: #2a2a2a;">
+  <box direction="column" class="text__is-white dev" center style="overflow:hidden;border-top: 1px solid #222;background: #2a2a2a;">
     <img style="height: 20px; padding: 0 20px; margin: 10px 0px;" src="src/assets/img/rnr.svg" />
     <br />
     <ul>
@@ -67,12 +67,12 @@ export default {
             name: 'Setor',
             class: '',
             icon: 'fa fa-sitemap',
-            link: '#/documento/'
+            link: '#/AccessDenied/'
           }, {
-            name: 'Remetente',
+            name: 'Signatário',
             class: '',
-            icon: 'fa fa-envelope',
-            link: '#/documento/'
+            icon: 'fa fa-edit',
+            link: '#/signatario/'
           }]
           //title: 'fa fa-user'
           //icon: 'fa fa-user'
@@ -97,6 +97,22 @@ export default {
             class: '',
             icon: 'fa fa-handshake-o',
             link: '#/backup'
+          }]
+        },
+        {
+          name: 'Acesso à Informação',
+          class: '',
+          icon: 'fa fa-info',
+          children: [{
+            name: 'e-SIC',
+            class: '',
+            icon: 'fa fa-info-circle',
+            link: '#/esic'
+          }, {
+            name: 'Transparência',
+            class: '',
+            icon: 'fa fa-search-plus',
+            link: '#/transparencia'
           }]
         },
         {
@@ -135,13 +151,19 @@ export default {
                   name: 'Tipo de Documento',
                   class: '',
                   icon: 'fa fa-file-o',
-                  link: '#/perfil'
+                  link: '#/tipo_documento'
                 },
                 {
                   name: 'Modelo',
                   class: '',
                   icon: 'fa fa-file-text',
                   link: '#/usuario'
+                },
+                {
+                  name: 'Sistema',
+                  class: '',
+                  icon: 'fa fa-cogs',
+                  link: '#/sistema'
                 }
               ]
             }
@@ -194,6 +216,16 @@ export default {
 .dev:hover ul {
   max-height: 500px;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

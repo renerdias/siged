@@ -49,6 +49,7 @@
 </box>
 </template>
 <script>
+//TODO: Criar timer para exibição de mensagem de sucesso
 import Box from "../../../components/r2-box.vue";
 import Infobar from "../../../components/r2-infobar.vue";
 import Modalloader from '../../../components/r2-modalloader.vue';

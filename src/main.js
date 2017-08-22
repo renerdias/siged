@@ -97,6 +97,11 @@ const router = new VueRouter({
       ]
     },
     {
+      path: '/tipo_documento',
+      component: require('./modules/tipo_documento/components/TipoDocumento.vue'),
+      beforeEnter: requererAutenticacao
+    },
+    {
       path: '/backup',
       component: require('./modules/backup/components/Backup.vue'),
       beforeEnter: requererAutenticacao
@@ -174,6 +179,11 @@ const router = new VueRouter({
       component: require('./Sugestao.vue'),
       beforeEnter: requererAutenticacao
     },
+    {
+      path: '/AccessDenied',
+      component: require('./AccessDenied.vue'),
+      beforeEnter: requererAutenticacao
+    },
     // catch all redirect
     {
       path: '/NotFound',
@@ -192,7 +202,7 @@ import App from './App.vue';
 new Vue({
   store,
   router,
-  el: '#app',
+  el: '#wrapper',
   render: h => h(App)
 });
 /*

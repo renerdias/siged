@@ -60,13 +60,20 @@ export default {
     }
   },
   activated() { //Quando usar keep alive//mounted() {
+    this.initialize();
     this._todosUsuarios();
   },
   methods: {
     ...mapActions('usuario', [
       '_todosUsuarios',
       '_pesquisarUsuario'
-    ])
+    ]),
+    initialize() {
+      console.log(this.__permissao.usuario.visualizar);
+      if (!this.__permissao.usuario.visualizar) {
+        this.$router.push('/AccessDenied');
+      }
+    },
   },
   computed: {
     ...mapGetters('usuario', [

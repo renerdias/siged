@@ -20,7 +20,7 @@
   .col(1,  '.col'); // kickstart it
 }
 */
-.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+.calc-grid-column(@class, @type,@index) when (@type = width) and (@index > 0) {
   @percent: (@index / @grid-columns);
   @id: round(@percent * 100);
 
@@ -32,7 +32,7 @@
   }
 }
 
-.calc-grid-column(@index, @class, @type) when (@type = left) and (@index > 0) {
+.calc-grid-column(@class, @type,@index) when (@type = left) and (@index > 0) {
   @percent: (@index / @grid-columns);
   @id: round(@percent * 100);
 
@@ -41,13 +41,13 @@
   }
 }
 
-.calc-grid-column(@index, @class, @type) when (@type = left) and (@index = 0) {
+.calc-grid-column(@class, @type,@index) when (@type = left) and (@index = 0) {
   .width__@{class}-left-0 {
     left: auto;
   }
 }
- 
-.calc-grid-column(@index, @class, @type) when (@type = right) and (@index > 0) {
+
+.calc-grid-column(@class, @type,@index) when (@type = right) and (@index > 0) {
   @percent: (@index / @grid-columns);
   @id: round(@percent * 100);
 
@@ -56,13 +56,13 @@
   }
 }
 
-.calc-grid-column(@index, @class, @type) when (@type = right) and (@index = 0) {
+.calc-grid-column(@class, @type,@index) when (@type = right) and (@index = 0) {
   .width__@{class}-right-0 {
     right: auto;
   }
 }
 
-.calc-grid-column(@index, @class, @type) when (@type = offset) {
+.calc-grid-column(@class, @type,@index) when (@type = offset) {
   @percent: (@index / @grid-columns);
   @id: round(@percent * 100);
 
@@ -71,15 +71,15 @@
   }
 }
 // Basic looping in LESS
-.loop-grid-columns(@index, @class, @type) when (@index > = 0) {
-  .calc-grid-column(@index, @class, @type);
+.loop-grid-columns(@class, @type,@index) when (@index >= 0) {
+  .calc-grid-column(@class, @type,@index);
   // next iteration
-  .loop-grid-columns((@index - 1), @class, @type);
+  .loop-grid-columns( @class, @type,(@index - 1));
 }
 // Create grid for specific class
 .make-grid(@class) {
-  .loop-grid-columns(@grid-columns, @class, width);
-  .loop-grid-columns(@grid-columns, @class, right);
-  .loop-grid-columns(@grid-columns, @class, left);
-  .loop-grid-columns(@grid-columns, @class, offset);
+  .loop-grid-columns( @class, width,@grid-columns);
+  .loop-grid-columns(@class, right,@grid-columns);
+  .loop-grid-columns(@class, left,@grid-columns);
+  .loop-grid-columns(@class, offset,@grid-columns);
 }

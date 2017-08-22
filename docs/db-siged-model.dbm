@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="355,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="379,138" last-zoom="1"
 	 default-owner="postgres">
 <database name="siged" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
 	<comment><![CDATA[Sistema Integrado de Gestao Eletronica de Documentos]]></comment>
@@ -5925,24 +5925,24 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	</initial-data>
 </table>
 
-<table name="ts_funcionalidade">
+<table name="ts_modulo">
 	<schema name="sistema"/>
 	<role name="postgres"/>
-	<comment><![CDATA[Tabela de funcionalidades do sistema]]></comment>
+	<comment><![CDATA[Tabela de modulos do sistema]]></comment>
 	<tag name="black_tables"/>
 	<position x="320" y="1360"/>
 	<column name="st_registro" not-null="true" default-value="'A'">
 		<type name="char" length="1"/>
 		<comment><![CDATA[Status do registro: A =  Ativo / I = Inativo.]]></comment>
 	</column>
-	<column name="id_funcionalidade" not-null="true">
+	<column name="id_modulo" not-null="true">
 		<type name="serial" length="0"/>
 		<comment><![CDATA[ID Sequencial. Chave primaria.]]></comment>
 	</column>
-	<column name="ds_funcionalidade" not-null="true">
+	<column name="ds_modulo" not-null="true">
 		<type name="character varying" length="100"/>
 	</column>
-	<column name="no_funcionalidade" not-null="true">
+	<column name="no_modulo" not-null="true">
 		<type name="character varying" length="100"/>
 	</column>
 	<column name="ds_acao" not-null="true">
@@ -5951,12 +5951,12 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<column name="no_acao" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
-	<constraint name="pk_funcionalidade" type="pk-constr" table="sistema.ts_funcionalidade">
-		<columns names="id_funcionalidade" ref-type="src-columns"/>
-		<comment><![CDATA[Chave primaria da tabela tb_funcionalidade.]]></comment>
+	<constraint name="pk_modulo" type="pk-constr" table="sistema.ts_modulo">
+		<columns names="id_modulo" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da tabela tb_modulo.]]></comment>
 	</constraint>
 	<initial-data>
-<![CDATA[id_funcionalidade•st_registro•ds_funcionalidade•no_funcionalidade•ds_acao•no_acao⸣
+<![CDATA[id_modulo•st_registro•ds_modulo•no_modulo•ds_acao•no_acao⸣
 1•A•Cadastro de Usuário•usuario•Inserir•inserir⸣
 2•A•Cadastro de Usuário•usuario•Editar•editar⸣
 3•A•Cadastro de Usuário•usuario•Visualizar•visualizar⸣
@@ -5969,14 +5969,17 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 10•A•Cadastro de Perfil•perfil•Editar Administrador•editar_admin⸣
 11•A•Cadastro de Documento•documento•Visualizar•visualizar⸣
 12•A•Cadastro de Documento•documento•Inserir•inserir⸣
-13•A•Cadastro de Documento•documento•Editar•editar]]>
+13•A•Cadastro de Documento•documento•Editar•editar⸣
+14•A•Cadastro de Tipo de Documento•tipo_documento•Visualizar•visualizar⸣
+15•A•Cadastro de Tipo de Documento•tipo_documento•Inserir•inserir⸣
+16•A•Cadastro de Tipo de Documento•tipo_documento•Editar•editar]]>
 	</initial-data>
 </table>
 
-<table name="rl_funcionalidade_perfil">
+<table name="rl_modulo_perfil">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<comment><![CDATA[Relacionamento entre a tabela ts_funcionalidade e tb_perfil.]]></comment>
+	<comment><![CDATA[Relacionamento entre a tabela ts_modulo e tb_perfil.]]></comment>
 	<tag name="black_tables"/>
 	<position x="1760" y="680"/>
 	<column name="st_permitido" not-null="true">
@@ -5984,15 +5987,19 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	</column>
 
 	<customidxs object-type="column">
-		<object name="id_funcionalidade" index="0"/>
+		<object name="id_modulo" index="0"/>
+		<object name="id_perfil" index="2"/>
+		<object name="id_usuario" index="3"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="fk_ts_funcionalidade" index="0"/>
-		<object name="pk_rl_funcionalidade_perfil" index="1"/>
+		<object name="fk_tb_perfil" index="2"/>
+		<object name="fk_tb_usuario" index="3"/>
+		<object name="fk_ts_modulo" index="0"/>
+		<object name="pk_rl_modulo_perfil" index="1"/>
 	</customidxs>
 	<initial-data>
-<![CDATA[id_funcionalidade•id_perfil•st_permitido•id_usuario⸣
+<![CDATA[id_modulo•id_perfil•st_permitido•id_usuario⸣
 1•1•A•1⸣
 2•1•A•1⸣
 3•1•A•1⸣
@@ -6005,42 +6012,45 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 10•1•A•1⸣
 11•1•A•1⸣
 12•1•A•1⸣
-13•1•A•1]]>
+13•1•A•1⸣
+14•1•A•1⸣
+15•1•A•1⸣
+16•1•A•1]]>
 	</initial-data>
 </table>
 
-<relationship name="ts_funcionalidade_tem_muitos_rl_funcionalidade_perfil" type="rel1n"
+<relationship name="ts_modulo_tem_muitos_rl_modulo_perfil" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="pk_{dt}" uq-pattern="uq_{dt}"
 	 src-fk-pattern="fk_{st}"
 	 custom-color="#59ff12"
-	 src-table="sistema.ts_funcionalidade"
-	 dst-table="public.rl_funcionalidade_perfil"
+	 src-table="sistema.ts_modulo"
+	 dst-table="public.rl_modulo_perfil"
 	 src-required="true" dst-required="false"
 	 identifier="true"
 />
 
-<relationship name="tb_perfil_tem_muitos_rl_funcionalidade_perfil" type="rel1n"
+<relationship name="tb_perfil_tem_muitos_rl_modulo_perfil" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="pk_{dt}" uq-pattern="uq_{dt}"
 	 src-fk-pattern="fk_{st}"
 	 custom-color="#549a77"
 	 src-table="public.tb_perfil"
-	 dst-table="public.rl_funcionalidade_perfil"
+	 dst-table="public.rl_modulo_perfil"
 	 src-required="true" dst-required="false"
 	 identifier="true"
 />
 
-<relationship name="tb_usuario_tem_muitos_rl_funcionalidade_perfil" type="rel1n"
+<relationship name="tb_usuario_tem_muitos_rl_modulo_perfil" type="rel1n"
 	 src-col-pattern="{sc}"
 	 pk-pattern="pk_{dt}" uq-pattern="uq_{dt}"
 	 src-fk-pattern="fk_{st}"
 	 custom-color="#a0a933"
 	 src-table="public.tb_usuario"
-	 dst-table="public.rl_funcionalidade_perfil"
+	 dst-table="public.rl_modulo_perfil"
 	 src-required="true" dst-required="false"/>
 
-<view name="vw_perfil_funcionalidade">
+<view name="vw_perfil_modulo">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="1400" y="1600"/>
@@ -6051,13 +6061,13 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
     public.tb_perfil.dt_modificacao, 
     public.tb_perfil.st_protegido, 
     public.tb_perfil.no_perfil,
-    sistema.ts_funcionalidade.id_funcionalidade,     
-    sistema.ts_funcionalidade.ds_funcionalidade, 
-    sistema.ts_funcionalidade.no_funcionalidade, 
-    sistema.ts_funcionalidade.ds_acao, 
-    sistema.ts_funcionalidade.no_acao
+    sistema.ts_modulo.id_modulo,     
+    sistema.ts_modulo.ds_modulo, 
+    sistema.ts_modulo.no_modulo, 
+    sistema.ts_modulo.ds_acao, 
+    sistema.ts_modulo.no_acao
     FROM public.tb_perfil
-        cross join sistema.ts_funcionalidade;]]></expression>
+        cross join sistema.ts_modulo;]]></expression>
 	</reference>
 </view>
 
@@ -6066,19 +6076,19 @@ A•01/01/2018 00:00:00•1•1•S•Rener Dias•07290372662•renerdias•ren
 	<role name="postgres"/>
 	<position x="1120" y="1600"/>
 	<reference>
-		<expression><![CDATA[SELECT vw_perfil_funcionalidade.id_perfil,
-vw_perfil_funcionalidade.no_perfil,
-    vw_perfil_funcionalidade.id_funcionalidade,
-    vw_perfil_funcionalidade.no_funcionalidade,
-    vw_perfil_funcionalidade.ds_acao,
-    vw_perfil_funcionalidade.no_acao,
-        CASE rl_funcionalidade_perfil.st_permitido
+		<expression><![CDATA[SELECT vw_perfil_modulo.id_perfil,
+vw_perfil_modulo.no_perfil,
+    vw_perfil_modulo.id_modulo,
+    vw_perfil_modulo.no_modulo,
+    vw_perfil_modulo.ds_acao,
+    vw_perfil_modulo.no_acao,
+        CASE rl_modulo_perfil.st_permitido
             WHEN 'N' THEN false
             ELSE true
         END AS st_permitido
-   FROM vw_perfil_funcionalidade
-     LEFT JOIN rl_funcionalidade_perfil ON rl_funcionalidade_perfil.id_funcionalidade = vw_perfil_funcionalidade.id_funcionalidade
-  ORDER BY vw_perfil_funcionalidade.id_perfil, vw_perfil_funcionalidade.no_funcionalidade, vw_perfil_funcionalidade.id_funcionalidade;]]></expression>
+   FROM vw_perfil_modulo
+     LEFT JOIN rl_modulo_perfil ON rl_modulo_perfil.id_modulo = vw_perfil_modulo.id_modulo
+  ORDER BY vw_perfil_modulo.id_perfil, vw_perfil_modulo.no_modulo, vw_perfil_modulo.id_modulo;]]></expression>
 	</reference>
 </view>
 

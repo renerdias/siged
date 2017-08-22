@@ -4,10 +4,9 @@
     <router-link v-if="bloquear" to="/documento/" style="width:50px;height:50px; font-size: 30px;" class="box box__is-center bg__is-white__on-hover text__is-red__on-hover"><i class="fa fa-angle-left text__is-red__on-hover"></i></router-link>
     <box expand center>{{operacaoEmAndamento}} Documento</box>
   </box>
-  <button direction="row" center class="text__is-white" @click="toggleDetail" style="height:30px; border:none;background: #888; font-weight: bold;letter-spacing: 5px;">
+  <box direction="row" center class="text__is-white" style="height:30px;background: #888; font-weight: bold;letter-spacing: 5px;">
     Detalhes
-    <i :class="['fa', {'fa-angle-double-down': openDetail }, {'fa-angle-double-right': !openDetail }]"></i>
-  </button>
+  </box>
   <box direction="column" expand :class="{'is-blocked': bloquear}">
     <modal v-if="showLoader">
       <box direction="row" center :padding="[0]">
@@ -28,11 +27,12 @@
         <field label="Ementa" type="textarea" v-model="documento.ds_ementa" direction="column" :padding="[0,5]" class="width__xs-100"></field>
       </box>
     </box>
-    <box direction="row" center class="text__is-white" style="height:30px; background: #999; font-weight: bold;letter-spacing: 3px;">
+    <button class="text__is-white" @click="toggleDetail" style="height:30px;  border:none;background: #999; font-weight: bold;letter-spacing: 3px;">
       Redação
-    </box>
+      <i :class="['fa', {'fa-caret-up': openDetail }, {'fa-caret-down': !openDetail }]"></i>
+    </button>
     <box direction="column" expand>
-      <tiny-mce id="tinymce" v-model="documento.ds_redacao" :plugins="'advlist autolink lists link image charmap hr anchor pagebreak searchreplace wordcount visualblocks visualchars code insertdatetime media nonbreaking save table contextmenu directionality template paste textcolor colorpicker textpattern imagetools codesample toc'"
+      <tiny-mce id="tinymce" v-model="documento.ds_redacao" :plugins="'autoresize advlist autolink lists link image charmap hr anchor pagebreak searchreplace wordcount visualblocks visualchars code insertdatetime media nonbreaking save table contextmenu directionality template paste textcolor colorpicker textpattern imagetools codesample toc'"
         :menubar="'edit insert view format table'" :toolbar="'undo redo | styleselect | fontselect fontsizeselect bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'"></tiny-mce>
     </box>
   </box>

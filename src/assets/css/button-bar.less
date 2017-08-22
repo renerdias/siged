@@ -1,223 +1,282 @@
-@background-color = #f3f3f3;
-@material-background-color = #ffffff;
-@text-color = #524b57;
-@sub-text-color = #ccc;
-@highlight-color = #8962ed;
-@second-highlight-color = #574bdb;
-@border-color = #ddd;
-@toolbar-background-color = #fff;
-@toolbar-button-color = #8962ed;
-@toolbar-text-color = #5b2c7a;
-@toolbar-border-color = #ddd;
-@buttonbar-color = #ac62ed;
-@buttonbar-active-text-color = #fff;
-@list-background-color = #fff;
-@list-header-background-color = #eee;
-@list-tap-active-background-color = #d9d9d9;
-@tabbar-background-color = #fff;
-@tabbar-text-color = #aaa;
-@tabbar-highlight-text-color = #8962ed;
-@tabbar-border-color = #ddd;
-@switch-highlight-color = #574bdb;
-@modal-background-color = rgba(0, 0, 0, 0.7);
-@modal-text-color = #fff;
-@alert-dialog-background-color = #f4f4f4;
-@alert-dialog-text-color = #1f1f21;
-@alert-dialog-button-color = #574bdb;
-@alert-dialog-separator-color = #ddd;
-@dialog-background-color = #f4f4f4;
-@popover-background-color = white;
-@popover-text-color = #1f1f21;
-@notification-background-color = #dc5236;
-@material-switch-active-thumb-color = #009688;
-@material-switch-inactive-thumb-color = #f1f1f1;
-@material-switch-active-background-color = #77c2bb;
-@material-switch-inactive-background-color = #b0afaf;
-@material-range-track-color = #e0e0e0;
-@material-range-thumb-color = #009688;
-@material-toolbar-background-color = #009688;
-@material-toolbar-text-color = #ffffff;
-@material-toolbar-button-color = #ffffff;
-@material-toolbar-button-active-color = rgba(255,255,255,0.15);
-@material-button-background-color = #009688;
-@material-button-text-color = #ffffff;
-@material-checkbox-active-color = #009688;
-@material-checkbox-inactive-color = #717171;
-@material-checkbox-checkmark-color = #ffffff;
-@material-radio-button-active-color = #009688;
-@material-radio-button-inactive-color = #717171;
-@material-text-input-text-color = #212121;
-@material-text-input-active-color = #009688;
-@material-text-input-inactive-color = #afafaf;
-@material-dialog-background-color = #ffffff;
-@material-alert-dialog-background-color = #ffffff;
-@material-alert-dialog-title-color = #212121;
-@material-alert-dialog-content-color = #727272;
-@material-alert-dialog-button-color = #009688;
-@material-progress-bar-primary-color = #009688;
-@material-progress-bar-secondary-color = #80cbc4;
-@material-progress-bar-background-color = #e0e0e0;
-@material-progress-circle-primary-color = #009688;
-@material-progress-circle-secondary-color = #80cbc4;
-@material-tabbar-background-color = #009688;
-@material-tabbar-text-color = rgba(255, 255, 255, 0.6);
-@material-tabbar-highlight-text-color = #ffffff;
-@material-tabbar-highlight-color = #26a69a;
-@fab-text-color = #ffffff;
-@fab-background-color = #009688;
-@import 'components' @import "_variables.less";
+@import "_variables.less";
+@import "colors.less";
 
 .button-bar {
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 17px;
-    //display: table;
-    table-layout: fixed;
-    white-space: nowrap;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    margin: 0;
-    border: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  //display: table;
+  table-layout: fixed;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  margin: 0;
+  border: none;
 }
 
 .button-bar__item {
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 17px;
-    //display: table-cell;
-    width: auto;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    position: relative;
-    position: relative;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  //display: table-cell;
+  width: auto;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .button-bar__item > input {
-    position: absolute;
-    overflow: hidden;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: 0;
-    border: 0;
-    opacity: 0.001;
-    z-index: 1;
-    vertical-align: top;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    -webkit-appearance: none;
-    appearance: none;
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0.001;
+  z-index: 1;
+  vertical-align: top;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .button-bar__item:first-child > .button-bar__button {
-    border-left: 1px solid rgba(18, 114, 224, 0.77);
-    border-right: 1px solid rgba(18, 114, 224, 0.77);
-    -webkit-border-top-left-radius: 4px;
-    border-top-left-radius: 4px;
-    -webkit-border-bottom-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+  border-left: 1px solid @default__is-dark;
+  border-right: 1px solid @default__is-dark;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .button-bar__item:last-child > .button-bar__button {
-    border-right: 1px solid rgba(18, 114, 224, 0.77);
-    -webkit-border-top-right-radius: 4px;
-    border-top-right-radius: 4px;
-    -webkit-border-bottom-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+  border-right: 1px solid @default__is-dark;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .button-bar__button {
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 17px;
-    -webkit-border-radius: inherit;
-    border-radius: inherit;
-    background-color: transparent;
-    color: rgba(18, 114, 224, 0.77);
-    border: 0 solid rgba(18, 114, 224, 0.77);
-    border-top: 1px solid rgba(18, 114, 224, 0.77);
-    border-bottom: 1px solid rgba(18, 114, 224, 0.77);
-    border-right: 1px solid rgba(18, 114, 224, 0.77);
-    font-weight: 400;
-    padding: 0 8px;
-    height: @control-height-default;
-    line-height: @control-height-default;
-    font-size: 13px;
-    width: 100%;
-    -webkit-transition: background-color 0.2s linear, color 0.2s linear;
-    -moz-transition: background-color 0.2s linear, color 0.2s linear;
-    -o-transition: background-color 0.2s linear, color 0.2s linear;
-    transition: background-color 0.2s linear, color 0.2s linear;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  -webkit-border-radius: inherit;
+  border-radius: inherit;
+  background-color: transparent;
+  color: @default__is-dark;
+  border: 0 solid @default__is-dark;
+  border-top: 1px solid @default__is-dark;
+  border-bottom: 1px solid @default__is-dark;
+  border-right: 1px solid @default__is-dark;
+  font-weight: 400;
+  padding: 0 8px;
+  height: @control-height-default;
+  line-height: @control-height-default;
+  font-size: 13px;
+  width: 100%;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear;
+  -moz-transition: background-color 0.2s linear, color 0.2s linear;
+  -o-transition: background-color 0.2s linear, color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .small .button-bar__button {
-    height: @control-height-small;
-    line-height: @control-height-small;
+  height: @control-height-small;
+  line-height: @control-height-small;
 }
 
 .small .button-bar__button:active,
 .small input:active+.button-bar__button {
-    height: @control-height-small;
-    line-height: @control-height-small;
+  height: @control-height-small;
+  line-height: @control-height-small;
 }
 
 .button-bar__button:active,
 input:active+.button-bar__button {
-    background-color: rgba(18, 114, 224, 0.77);
-    border: 0 solid rgba(18, 114, 224, 0.77);
-    border-top: 1px solid rgba(18, 114, 224, 0.77);
-    border-bottom: 1px solid rgba(18, 114, 224, 0.77);
-    border-right: 1px solid rgba(18, 114, 224, 0.77);
-    height: @control-height-default;
-    line-height: @control-height-default;
-    font-size: 13px;
-    width: 100%;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
+  background-color: @default__is-dark;
+  border: 0 solid @default__is-dark;
+  border-top: 1px solid @default__is-dark;
+  border-bottom: 1px solid @default__is-dark;
+  border-right: 1px solid @default__is-dark;
+  height: @control-height-default;
+  line-height: @control-height-default;
+  font-size: 13px;
+  width: 100%;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 
 .button-bar__item.active > .button-bar__button,
 input:checked+.button-bar__button {
-    background-color: rgba(18, 114, 224, 0.77);
-    color: #fff;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
+  background-color: @default__is-dark;
+  color: #fff;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 
 .button-bar__button:disabled {
-    opacity: 0.3;
-    cursor: default;
-    pointer-events: none;
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
 }
 
 .button-bar__button:hover {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 
 .button-bar__button:focus {
-    outline: 0;
+  outline: 0;
+}
+/* Blue Style */
+.button-bar__is-blue .button-bar__item:first-child > .button-bar__button {
+  border-left: 1px solid @default__is-blue;
+  border-right: 1px solid @default__is-blue;
+}
+
+.button-bar__is-blue .button-bar__item:last-child > .button-bar__button {
+  border-right: 1px solid @default__is-blue;
+}
+
+.button-bar__is-blue .button-bar__button {
+  color: @default__is-blue;
+  border: 0 solid @default__is-blue;
+  border-top: 1px solid @default__is-blue;
+  border-bottom: 1px solid @default__is-blue;
+  border-right: 1px solid @default__is-blue;
+}
+
+.button-bar__is-blue .button-bar__button:active,
+.button-bar__is-blue input:active+.button-bar__button {
+  background-color: @default__is-blue;
+  border: 0 solid @default__is-blue;
+  border-top: 1px solid @default__is-blue;
+  border-bottom: 1px solid @default__is-blue;
+  border-right: 1px solid @default__is-blue;
+}
+
+.button-bar__is-blue .button-bar__item.active > .button-bar__button,
+.button-bar__is-blue input:checked+.button-bar__button {
+  background-color: @default__is-blue;
+  color: #fff;
+}
+/* Red Style */
+.button-bar__is-red .button-bar__item:first-child > .button-bar__button {
+  border-left: 1px solid @default__is-red;
+  border-right: 1px solid @default__is-red;
+}
+
+.button-bar__is-red .button-bar__item:last-child > .button-bar__button {
+  border-right: 1px solid @default__is-red;
+}
+
+.button-bar__is-red .button-bar__button {
+  color: @default__is-red;
+  border: 0 solid @default__is-red;
+  border-top: 1px solid @default__is-red;
+  border-bottom: 1px solid @default__is-red;
+  border-right: 1px solid @default__is-red;
+}
+
+.button-bar__is-red .button-bar__button:active,
+.button-bar__is-red input:active+.button-bar__button {
+  background-color: @default__is-red;
+  border: 0 solid @default__is-red;
+  border-top: 1px solid @default__is-red;
+  border-bottom: 1px solid @default__is-red;
+  border-right: 1px solid @default__is-red;
+}
+
+.button-bar__is-red .button-bar__item.active > .button-bar__button,
+.button-bar__is-red input:checked+.button-bar__button {
+  background-color: @default__is-red;
+  color: #fff;
+}
+/* Yellow Style */
+.button-bar__is-yellow .button-bar__item:first-child > .button-bar__button {
+  border-left: 1px solid @default__is-yellow;
+  border-right: 1px solid @default__is-yellow;
+}
+
+.button-bar__is-yellow .button-bar__item:last-child > .button-bar__button {
+  border-right: 1px solid @default__is-yellow;
+}
+
+.button-bar__is-yellow .button-bar__button {
+  color: @default__is-yellow;
+  border: 0 solid @default__is-yellow;
+  border-top: 1px solid @default__is-yellow;
+  border-bottom: 1px solid @default__is-yellow;
+  border-right: 1px solid @default__is-yellow;
+}
+
+.button-bar__is-yellow .button-bar__button:active,
+.button-bar__is-yellow input:active+.button-bar__button {
+  background-color: @default__is-yellow;
+  border: 0 solid @default__is-yellow;
+  border-top: 1px solid @default__is-yellow;
+  border-bottom: 1px solid @default__is-yellow;
+  border-right: 1px solid @default__is-yellow;
+}
+
+.button-bar__is-yellow .button-bar__item.active > .button-bar__button,
+.button-bar__is-yellow input:checked+.button-bar__button {
+  background-color: @default__is-yellow;
+  color: #fff;
+}
+/* Purple Style */
+.button-bar__is-purple .button-bar__item:first-child > .button-bar__button {
+  border-left: 1px solid @default__is-purple;
+  border-right: 1px solid @default__is-purple;
+}
+
+.button-bar__is-purple .button-bar__item:last-child > .button-bar__button {
+  border-right: 1px solid @default__is-purple;
+}
+
+.button-bar__is-purple .button-bar__button {
+  color: @default__is-purple;
+  border: 0 solid @default__is-purple;
+  border-top: 1px solid @default__is-purple;
+  border-bottom: 1px solid @default__is-purple;
+  border-right: 1px solid @default__is-purple;
+}
+
+.button-bar__is-purple .button-bar__button:active,
+.button-bar__is-purple input:active+.button-bar__button {
+  background-color: @default__is-purple;
+  border: 0 solid @default__is-purple;
+  border-top: 1px solid @default__is-purple;
+  border-bottom: 1px solid @default__is-purple;
+  border-right: 1px solid @default__is-purple;
+}
+
+.button-bar__is-purple .button-bar__item.active > .button-bar__button,
+.button-bar__is-purple input:checked+.button-bar__button {
+  background-color: @default__is-purple;
+  color: #fff;
 }
